@@ -67,35 +67,31 @@
             object-fit: cover;
         }
 
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
         .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.9);
             border: none;
             width: 50px;
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 24px;
             font-weight: bold;
             color: #333;
             transition: all 0.3s ease;
-            z-index: 10;
         }
 
         .carousel-btn:hover {
             background: white;
-            transform: translateY(-50%) scale(1.1);
+            transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-btn.prev {
-            left: 15px;
-        }
-
-        .carousel-btn.next {
-            right: 15px;
         }
 
         .indicators {
@@ -129,23 +125,19 @@
             .title {
                 font-size: 2rem;
             }
-            
+
             .carousel-container {
                 max-width: 90%;
             }
-            
+
             .carousel-btn {
                 width: 40px;
                 height: 40px;
-                font-size: 16px;
+                font-size: 18px;
             }
-            
-            .carousel-btn.prev {
-                left: 10px;
-            }
-            
-            .carousel-btn.next {
-                right: 10px;
+
+            .carousel-controls {
+                gap: 20px;
             }
         }
     </style>
@@ -154,50 +146,30 @@
     <div class="container">
         <h1 class="title">Lucas e o Herói do Vento</h1>
         <p class="subtitle">Troque de pagina clicando na seta</p>
-        
+
         <div class="carousel-container">
             <div class="carousel" id="carousel">
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/coWBxDK.png" alt="Foto 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/09QHP90.png" alt="Foto 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/AnVQY9w.png" alt="Foto 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/zpahjt1.png" alt="Foto 4">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/NpJZjzO.png" alt="Foto 5">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/1G5C1Wx.png" alt="Foto 6">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/JRH7ngI.png" alt="Foto 6">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6">
-                </div>
+                <div class="carousel-item"><img src="https://i.imgur.com/coWBxDK.png" alt="Foto 1"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/09QHP90.png" alt="Foto 2"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/AnVQY9w.png" alt="Foto 3"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/zpahjt1.png" alt="Foto 4"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/NpJZjzO.png" alt="Foto 5"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/1G5C1Wx.png" alt="Foto 7"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/JRH7ngI.png" alt="Foto 8"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 9"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 10"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 11"></div>
             </div>
-            
+        </div>
+
+        <div class="carousel-controls">
             <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
             <button class="carousel-btn next" onclick="nextSlide()">›</button>
         </div>
-        
+
         <div class="indicators" id="indicators"></div>
-        
+
         <p class="photo-counter">
             <span id="current-photo">1</span> de <span id="total-photos">5</span> fotos
         </p>
@@ -209,8 +181,7 @@
         const slides = document.querySelectorAll('.carousel-item');
         const totalSlides = slides.length;
         const indicatorsContainer = document.getElementById('indicators');
-        
-        // Criar indicadores
+
         function createIndicators() {
             for (let i = 0; i < totalSlides; i++) {
                 const indicator = document.createElement('div');
@@ -220,22 +191,19 @@
             }
             updateIndicators();
         }
-        
-        // Atualizar indicadores
+
         function updateIndicators() {
             const indicators = document.querySelectorAll('.indicator');
             indicators.forEach((indicator, index) => {
                 indicator.classList.toggle('active', index === currentSlide);
             });
         }
-        
-        // Atualizar contador
+
         function updateCounter() {
             document.getElementById('current-photo').textContent = currentSlide + 1;
             document.getElementById('total-photos').textContent = totalSlides;
         }
-        
-        // Ir para slide específico
+
         function goToSlide(slideIndex) {
             currentSlide = slideIndex;
             const translateX = -currentSlide * 100;
@@ -243,60 +211,46 @@
             updateIndicators();
             updateCounter();
         }
-        
-        // Próximo slide
+
         function nextSlide() {
             currentSlide = (currentSlide + 1) % totalSlides;
             goToSlide(currentSlide);
         }
-        
-        // Slide anterior
+
         function previousSlide() {
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             goToSlide(currentSlide);
         }
-        
-        // Navegação por teclado
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                previousSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
+            if (e.key === 'ArrowLeft') previousSlide();
+            else if (e.key === 'ArrowRight') nextSlide();
         });
-        
-        // Suporte a touch/swipe em dispositivos móveis
+
         let startX = 0;
         let endX = 0;
-        
+
         carousel.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
         });
-        
+
         carousel.addEventListener('touchend', (e) => {
             endX = e.changedTouches[0].clientX;
             handleSwipe();
         });
-        
+
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = startX - endX;
-            
+
             if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    previousSlide();
-                }
+                if (diff > 0) nextSlide();
+                else previousSlide();
             }
         }
-        
-        // Inicializar
+
         createIndicators();
         updateCounter();
-        
-        // Auto-play opcional (descomente para ativar)
-        // setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
