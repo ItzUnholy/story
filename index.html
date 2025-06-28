@@ -1,60 +1,58 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Bem-vindo!</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+import { Card, CardContent } from "@/components/ui/card"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import Image from "next/image"
 
-        .container {
-            background-color: white;
-            padding: 40px 60px;
-            border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-            text-align: center;
-        }
+export default function Home() {
+  // Array de imagens placeholder - você pode substituir pelos seus próprios URLs
+  const photos = [
+    "https://i.imgur.com/coWBxDK.png",
+    "/placeholder.svg?height=975&width=705",
+    "/placeholder.svg?height=975&width=705",
+    "/placeholder.svg?height=975&width=705",
+    "/placeholder.svg?height=975&width=705",
+  ]
 
-        h1 {
-            font-size: 36px;
-            color: #333;
-            margin-bottom: 10px;
-        }
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Galeria de Fotos</h1>
+          <p className="text-gray-600">Navegue pelas imagens usando as setas</p>
+        </div>
 
-        p {
-            font-size: 18px;
-            color: #555;
-        }
+        <div className="flex justify-center">
+          <Carousel className="w-full max-w-2xl">
+            <CarouselContent>
+              {photos.map((photo, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <Card className="border-0 shadow-2xl">
+                      <CardContent className="flex aspect-[705/975] items-center justify-center p-0">
+                        <Image
+                          src={photo || "/placeholder.svg"}
+                          alt={`Foto ${index + 1}`}
+                          width={705}
+                          height={975}
+                          className="w-full h-full object-cover rounded-lg"
+                          priority={index === 0}
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
+          </Carousel>
+        </div>
 
-        .btn {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #4facfe;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background-color: #00c3ff;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Bem-vindo!</h1>
-        <p>É um prazer ter você aqui. Aproveite sua visita!</p>
-        <button class="btn" onclick="alert('Você clicou em começar!')">Começar</button>
+        <div className="text-center mt-6">
+          <p className="text-sm text-gray-500">
+            {photos.length} {photos.length === 1 ? "foto" : "fotos"} na galeria
+          </p>
+        </div>
+      </div>
     </div>
-</body>
-</html>
+  )
+}
