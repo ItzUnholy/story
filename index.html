@@ -67,6 +67,44 @@
             object-fit: cover;
         }
 
+        .carousel-item.audio-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            aspect-ratio: 705/975;
+            padding: 40px;
+        }
+
+        .audio-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .audio-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .audio-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
         .carousel-controls {
             display: flex;
             justify-content: center;
@@ -139,6 +177,15 @@
             .carousel-controls {
                 gap: 20px;
             }
+
+            .audio-container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .audio-title {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -159,11 +206,23 @@
                 <div class="carousel-item"><img src="https://i.imgur.com/IfCEbdL.png" alt="Foto 9"></div>
                 <div class="carousel-item"><img src="https://i.imgur.com/z1NzSLE.png" alt="Foto 10"></div>
                 <div class="carousel-item"><img src="https://i.imgur.com/BKzUB8t.png" alt="Foto 11"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/i42FAIP.png" alt="Foto 11"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/WpvvEyT.png" alt="Foto 11"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/jTtdBdE.png" alt="Foto 11"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/wyokGqS.png" alt="Foto 11"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/TpoBYjS.png" alt="Foto 11"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/i42FAIP.png" alt="Foto 12"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/WpvvEyT.png" alt="Foto 13"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/jTtdBdE.png" alt="Foto 14"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/wyokGqS.png" alt="Foto 15"></div>
+                <div class="carousel-item"><img src="https://i.imgur.com/TpoBYjS.png" alt="Foto 16"></div>
+                <div class="carousel-item audio-item">
+                    <div class="audio-container">
+                        <h3 class="audio-title">🎵 Trilha Sonora</h3>
+                        <audio class="audio-player" controls>
+                            <source src="https://discord.com/channels/@me/1388684351910445166/1388684386869969029" type="audio/mpeg">
+                            <p>Seu navegador não suporta o elemento de áudio.</p>
+                        </audio>
+                        <p class="audio-description">
+                            Ouça a música tema da aventura de Lucas e o Herói do Vento
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -175,7 +234,7 @@
         <div class="indicators" id="indicators"></div>
 
         <p class="photo-counter">
-            <span id="current-photo">1</span> de <span id="total-photos">5</span> fotos
+            <span id="current-photo">1</span> de <span id="total-photos">17</span> itens
         </p>
     </div>
 
@@ -209,6 +268,14 @@
         }
 
         function goToSlide(slideIndex) {
+            // Pause any playing audio when changing slides
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => {
+                if (!audio.paused) {
+                    audio.pause();
+                }
+            });
+
             currentSlide = slideIndex;
             const translateX = -currentSlide * 100;
             carousel.style.transform = `translateX(${translateX}%)`;
