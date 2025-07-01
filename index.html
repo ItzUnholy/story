@@ -109,56 +109,83 @@
 
         /* CONTAINER COM FUNDO ESCURO SÓLIDO PARA LEGIBILIDADE */
         .story-content {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-        }
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+}
 
-        .page-title {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: #FFFFFF;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
+.page-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #FFFFFF !important;
+    text-shadow: 3px 3px 6px rgba(0,0,0,1) !important;
+}
 
-        .story-text {
-            font-size: 1rem;
-            line-height: 1.8;
-            text-align: left;
-            color: #F5F5F5;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            font-weight: 500;
-        }
+.story-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: left;
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+    font-weight: 500;
+}
 
-        .story-text p {
-            margin-bottom: 12px;
-        }
+.story-text p {
+    margin-bottom: 12px;
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+}
+
+/* FORÇAR TODAS AS LETRAS DOS CONTAINERS PARA BRANCO */
+.story-content * {
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+}
+
+.story-content h2 {
+    color: #FFFFFF !important;
+    text-shadow: 3px 3px 6px rgba(0,0,0,1) !important;
+}
+
+.story-content p {
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+}
+
+.story-content em {
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+    font-style: italic;
+}
+
+.story-content strong {
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+    font-weight: bold;
+}
 
         /* EFEITOS MUITO MAIS VISÍVEIS */
 
-        /* TODAS AS PÁGINAS COM FONTES BRANCAS */
-        .page-1 .page-title, .page-2 .page-title, .page-3 .page-title, .page-4 .page-title,
-        .page-5 .page-title, .page-6 .page-title, .page-7 .page-title, .page-8 .page-title,
-        .page-9 .page-title, .page-10 .page-title, .page-11 .page-title, .page-12 .page-title {
-            color: #FFFFFF;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
+        /* TODAS AS PÁGINAS COM FONTES BRANCAS - FORÇADO */
+.page-1, .page-2, .page-3, .page-4, .page-5, .page-6, 
+.page-7, .page-8, .page-9, .page-10, .page-11, .page-12 {
+    color: #FFFFFF !important;
+}
 
-        .page-1 .story-text, .page-2 .story-text, .page-3 .story-text, .page-4 .story-text,
-        .page-5 .story-text, .page-6 .story-text, .page-7 .story-text, .page-8 .story-text,
-        .page-9 .story-text, .page-10 .story-text, .page-11 .story-text, .page-12 .story-text {
-            color: #F5F5F5;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-        }
+.page-1 *, .page-2 *, .page-3 *, .page-4 *, .page-5 *, .page-6 *,
+.page-7 *, .page-8 *, .page-9 *, .page-10 *, .page-11 *, .page-12 * {
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1) !important;
+}
 
         /* Página 1 - Vila e Montanhas */
         .page-1 {
