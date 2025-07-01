@@ -134,36 +134,172 @@
             object-fit: cover;
         }
 
-        .carousel-item.audio-item {
+        /* Container especial para o final da história */
+        .carousel-item.story-finale {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             aspect-ratio: 705/975;
             padding: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .audio-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
+        /* Efeitos de partículas douradas */
+        .story-finale::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
+                radial-gradient(2px 2px at 40px 70px, #ffed4e, transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
+                radial-gradient(1px 1px at 130px 80px, #ffed4e, transparent),
+                radial-gradient(2px 2px at 160px 30px, #ffd700, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 3s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        /* Efeito de páginas de livro */
+        .story-finale::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background: 
+                linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+            animation: pageFlip 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pageFlip {
+            0%, 100% { opacity: 0; transform: rotateY(0deg); }
+            50% { opacity: 1; transform: rotateY(5deg); }
+        }
+
+        .story-container {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 500px;
             width: 100%;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        .audio-title {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 20px;
+        .story-title {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 15px;
             font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            font-family: 'Georgia', serif;
+        }
+
+        .story-subtitle {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            font-style: italic;
+            opacity: 0.9;
         }
 
         .audio-player {
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .story-description {
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Efeito de brilho no título */
+        .story-title {
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldShine 3s ease-in-out infinite;
+        }
+
+        @keyframes goldShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Partículas flutuantes */
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 70%; animation-delay: 0.5s; }
+        .particle:nth-child(5) { left: 80%; animation-delay: 1.5s; }
+        .particle:nth-child(6) { left: 90%; animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(100px) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-90px) scale(1);
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
         }
 
         .carousel-controls {
@@ -239,12 +375,15 @@
             .carousel-controls {
                 gap: 20px;
             }
-            .audio-container {
-                padding: 20px;
+            .story-container {
+                padding: 25px;
                 margin: 20px;
             }
-            .audio-title {
-                font-size: 1.2rem;
+            .story-title {
+                font-size: 1.4rem;
+            }
+            .story-subtitle {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -273,13 +412,27 @@
                 <div class="carousel-item"><img src="https://i.imgur.com/jTtdBdE.png" alt="Foto 14"></div>
                 <div class="carousel-item"><img src="https://i.imgur.com/wyokGqS.png" alt="Foto 15"></div>
                 <div class="carousel-item"><img src="https://i.imgur.com/TpoBYjS.png" alt="Foto 16"></div>
-                <div class="carousel-item audio-item">
-                    <div class="audio-container">
-                        <h3 class="audio-title">🎵 Michael Bolton - Fathers & Daughters</h3>
+                <div class="carousel-item story-finale">
+                    <div class="floating-particles">
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                    </div>
+                    <div class="story-container">
+                        <h3 class="story-title">🎵 O Final da Jornada</h3>
+                        <p class="story-subtitle">Michael Bolton - Fathers & Daughters</p>
                         <audio class="audio-player" controls preload="metadata">
                             <source src="audio.mp3" type="audio/mpeg">
                             <p>Seu navegador não suporta o elemento de áudio.</p>
                         </audio>
+                        <p class="story-description">
+                            "E assim, Lucas completou sua jornada épica ao lado do Herói do Vento. 
+                            Uma história de coragem, amizade e descobertas que ecoará para sempre 
+                            nos ventos da memória..."
+                        </p>
                     </div>
                 </div>
             </div>
