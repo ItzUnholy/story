@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas e o Herói do Vento - História Completa</title>
+    <title>Casas Bahia - Ofertas Imperdíveis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,1049 +13,1023 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: #0a0a0a;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Background de estrelas animadas */
-        .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
-        }
-
-        .star.small {
-            width: 1px;
-            height: 1px;
-            animation-duration: 2s;
-        }
-
-        .star.medium {
-            width: 2px;
-            height: 2px;
-            animation-duration: 3s;
-        }
-
-        .star.large {
-            width: 3px;
-            height: 3px;
-            animation-duration: 4s;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 40px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
-        }
-
-        .carousel-container {
-            position: relative;
-            max-width: 705px;
+            max-width: 1200px;
             margin: 0 auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 20px;
         }
 
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        /* Header Styles */
+        .top-bar {
+            background-color: #ff6b35;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
         }
 
-        .story-page {
-            min-width: 100%;
-            aspect-ratio: 705/975;
+        .top-bar-content {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .story-content {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 20px;
+        .top-bar-left, .top-bar-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .search-container {
+            flex: 1;
             max-width: 500px;
-            width: 100%;
             position: relative;
-            z-index: 2;
-            text-align: center;
         }
 
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-
-        .story-text {
-            font-size: 1rem;
-            line-height: 1.8;
-            text-align: left;
-            opacity: 0.9;
-        }
-
-        /* Página 1 - Vila e Montanhas */
-        .page-1 {
-            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
-        }
-
-        .page-1 .page-title {
-            color: #2F4F4F;
-        }
-
-        .page-1 .story-text {
-            color: #2F4F4F;
-        }
-
-        .page-1::before {
-            content: '';
-            position: absolute;
+        .search-input {
             width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(3px 3px at 20% 30%, #FFB6C1, transparent),
-                radial-gradient(3px 3px at 40% 70%, #FFB6C1, transparent),
-                radial-gradient(2px 2px at 90% 40%, #FFB6C1, transparent);
-            background-size: 100px 100px;
-            animation: butterflies 4s linear infinite;
-            opacity: 0.6;
+            padding: 12px 50px 12px 15px;
+            border: 2px solid #ff6b35;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
-        @keyframes butterflies {
-            0% { transform: translateX(-10px) translateY(0px); }
-            50% { transform: translateX(10px) translateY(-10px); }
-            100% { transform: translateX(-10px) translateY(0px); }
-        }
-
-        /* Página 2 - Casa Acolhedora */
-        .page-2 {
-            background: linear-gradient(135deg, #FFA07A 0%, #FFE4B5 50%, #FFEFD5 100%);
-        }
-
-        .page-2 .page-title {
-            color: #8B4513;
-        }
-
-        .page-2 .story-text {
-            color: #8B4513;
-        }
-
-        .page-2::before {
-            content: '';
+        .search-btn {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(4px 4px at 25% 25%, #FF69B4, transparent),
-                radial-gradient(3px 3px at 75% 75%, #FF1493, transparent),
-                radial-gradient(2px 2px at 50% 50%, #FFB6C1, transparent);
-            background-size: 80px 80px;
-            animation: hearts 3s ease-in-out infinite;
-            opacity: 0.4;
-        }
-
-        @keyframes hearts {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Página 3 - Lenda Mística */
-        .page-3 {
-            background: linear-gradient(135deg, #4B0082 0%, #8A2BE2 50%, #9370DB 100%);
-        }
-
-        .page-3 .page-title {
-            color: #FFD700;
-        }
-
-        .page-3 .story-text {
-            color: #E6E6FA;
-        }
-
-        .page-3::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20% 50%, #FFD700, transparent),
-                radial-gradient(1px 1px at 80% 50%, #FFF, transparent),
-                radial-gradient(3px 3px at 50% 20%, #FFD700, transparent);
-            background-size: 150px 150px;
-            animation: mystical 5s linear infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes mystical {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Página 4 - Dia Dourado */
-        .page-4 {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-        }
-
-        .page-4 .page-title {
-            color: #8B4513;
-        }
-
-        .page-4 .story-text {
-            color: #8B4513;
-        }
-
-        .page-4::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: goldSparkle 2s ease-in-out infinite;
-        }
-
-        @keyframes goldSparkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Página 5 - Vento Brincalhão */
-        .page-5 {
-            background: linear-gradient(135deg, #98FB98 0%, #90EE90 50%, #32CD32 100%);
-        }
-
-        .page-5 .page-title {
-            color: #006400;
-        }
-
-        .page-5 .story-text {
-            color: #006400;
-        }
-
-        .page-5::before {
-            content: '🍃';
-            position: absolute;
-            font-size: 2rem;
-            animation: windLeaves 3s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        .page-5::after {
-            content: '🍃 🍃 🍃';
-            position: absolute;
-            font-size: 1.5rem;
-            top: 70%;
-            left: 20%;
-            animation: windLeaves 4s ease-in-out infinite reverse;
-            opacity: 0.4;
-        }
-
-        @keyframes windLeaves {
-            0% { transform: translateX(-20px) rotate(0deg); }
-            50% { transform: translateX(20px) rotate(180deg); }
-            100% { transform: translateX(-20px) rotate(360deg); }
-        }
-
-        /* Página 6 - Chamado Invisível */
-        .page-6 {
-            background: linear-gradient(135deg, #E6E6FA 0%, #D8BFD8 50%, #DDA0DD 100%);
-        }
-
-        .page-6 .page-title {
-            color: #4B0082;
-        }
-
-        .page-6 .story-text {
-            color: #4B0082;
-        }
-
-        .page-6::before {
-            content: '🪶';
-            position: absolute;
-            font-size: 3rem;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: featherFall 4s ease-in-out infinite;
-        }
-
-        @keyframes featherFall {
-            0% { transform: translateX(-50%) translateY(-20px) rotate(0deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(-50%) translateY(20px) rotate(10deg); opacity: 0; }
-        }
-
-        /* Página 7 - Sinais */
-        .page-7 {
-            background: linear-gradient(135deg, #F0F8FF 0%, #B0E0E6 50%, #87CEEB 100%);
-        }
-
-        .page-7 .page-title {
-            color: #191970;
-        }
-
-        .page-7 .story-text {
-            color: #191970;
-        }
-
-        .page-7::before {
-            content: '✉️ ⭐ 💌';
-            position: absolute;
-            font-size: 1.5rem;
-            animation: floatingMessages 5s ease-in-out infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes floatingMessages {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Página 8 - Promessa Noturna */
-        .page-8 {
-            background: linear-gradient(135deg, #191970 0%, #000080 50%, #4B0082 100%);
-        }
-
-        .page-8 .page-title {
-            color: #FFD700;
-        }
-
-        .page-8 .story-text {
-            color: #E6E6FA;
-        }
-
-        .page-8::before {
-            content: '⭐';
-            position: absolute;
-            font-size: 2rem;
-            top: 15%;
-            right: 20%;
-            animation: twinklingStar 2s ease-in-out infinite;
-        }
-
-        .page-8::after {
-            content: '✨ ⭐ ✨';
-            position: absolute;
-            font-size: 1.2rem;
-            bottom: 20%;
-            left: 15%;
-            animation: twinklingStar 3s ease-in-out infinite reverse;
-        }
-
-        @keyframes twinklingStar {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Página 9 - Dia Especial */
-        .page-9 {
-            background: linear-gradient(135deg, #FFFFE0 0%, #FFFACD 50%, #F0E68C 100%);
-        }
-
-        .page-9 .page-title {
-            color: #8B4513;
-        }
-
-        .page-9 .story-text {
-            color: #8B4513;
-        }
-
-        .page-9::before {
-            content: '☀️';
-            position: absolute;
-            font-size: 3rem;
-            top: 10%;
-            right: 10%;
-            animation: gentleSun 4s ease-in-out infinite;
-        }
-
-        @keyframes gentleSun {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-        }
-
-        /* Página 10 - Memórias */
-        .page-10 {
-            background: linear-gradient(135deg, #F5DEB3 0%, #DEB887 50%, #D2B48C 100%);
-        }
-
-        .page-10 .page-title {
-            color: #8B4513;
-        }
-
-        .page-10 .story-text {
-            color: #8B4513;
-        }
-
-        .page-10::before {
-            content: '📷 💙 📝';
-            position: absolute;
-            font-size: 1.8rem;
-            animation: memories 6s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes memories {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(2deg); }
-            66% { transform: translateY(-5px) rotate(-2deg); }
-        }
-
-        /* Página 11 - Retorno */
-        .page-11 {
-            background: linear-gradient(135deg, #483D8B 0%, #6A5ACD 50%, #9370DB 100%);
-        }
-
-        .page-11 .page-title {
-            color: #FFD700;
-        }
-
-        .page-11 .story-text {
-            color: #E6E6FA;
-        }
-
-        .page-11::before {
-            content: '⭐';
-            position: absolute;
-            font-size: 4rem;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: approachingStar 3s ease-in-out infinite;
-        }
-
-        @keyframes approachingStar {
-            0% { transform: translateX(-50%) scale(0.8); opacity: 0.5; }
-            50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
-            100% { transform: translateX(-50%) scale(0.8); opacity: 0.5; }
-        }
-
-        /* Página 12 - Final Épico */
-        .page-12 {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF8C00 50%, #FF6347 75%, #FF1493 100%);
-        }
-
-        .page-12 .page-title {
-            color: #8B0000;
-            font-size: 2rem;
-        }
-
-        .page-12 .story-text {
-            color: #8B0000;
-            font-weight: bold;
-        }
-
-        .page-12::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(3px 3px at 20% 30%, #FFD700, transparent),
-                radial-gradient(2px 2px at 40% 70%, #FFF, transparent),
-                radial-gradient(4px 4px at 90% 40%, #FFD700, transparent),
-                radial-gradient(2px 2px at 60% 20%, #FFF, transparent);
-            background-size: 100px 100px;
-            animation: epicFinale 2s linear infinite;
-            opacity: 0.8;
-        }
-
-        @keyframes epicFinale {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-5px) scale(1.05); }
-            100% { transform: translateY(0px) scale(1); }
-        }
-
-        /* Final com Áudio - Mantido do código anterior */
-        .story-finale {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            aspect-ratio: 705/975;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .story-finale::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
             right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
-                radial-gradient(2px 2px at 40px 70px, #ffed4e, transparent),
-                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: sparkle 3s linear infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes sparkle {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-100px); }
-        }
-
-        .story-finale .story-container {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            z-index: 2;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .story-finale .story-title {
-            font-size: 1.8rem;
-            color: #ffd700;
-            margin-bottom: 15px;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: goldShine 3s ease-in-out infinite;
-        }
-
-        @keyframes goldShine {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .story-finale .story-subtitle {
-            font-size: 1rem;
-            color: #e0e0e0;
-            margin-bottom: 25px;
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        .story-finale .audio-player {
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .story-finale .story-description {
-            color: #cccccc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-top: 15px;
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .carousel-btn {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
             cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-btn {
+            background: none;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+            color: #333;
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .categories-menu {
+            background: #f0f0f0;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .categories-list {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+        }
+
+        .category-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .category-link:hover {
+            color: #ff6b35;
+        }
+
+        /* Banner Styles */
+        .banner-section {
+            padding: 30px 0;
+        }
+
+        .banner-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .banner-card {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-card.blue {
+            background: linear-gradient(135deg, #2196f3, #42a5f5);
+        }
+
+        .banner-content h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .banner-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #333;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: white;
+            padding: 30px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .benefit-icon {
+            font-size: 32px;
+            color: #ff6b35;
+        }
+
+        .benefit-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .benefit-text p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ff6b35;
+            border: 2px solid #ff6b35;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .rating-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .product-prices {
+            margin-bottom: 15px;
+        }
+
+        .original-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .current-price {
             font-size: 24px;
             font-weight: bold;
-            color: #ffffff;
-            transition: all 0.3s ease;
+            color: #ff6b35;
+            margin: 5px 0;
         }
 
-        .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(74, 144, 226, 0.4);
+        .installments {
+            font-size: 14px;
+            color: #666;
         }
 
-        .indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+        .btn-buy {
+            width: 100%;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s;
         }
 
-        .indicator.active {
-            background: #4a90e2;
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
+        .btn-buy:hover {
+            background: #e55a2b;
         }
 
-        .page-counter {
-            margin-top: 20px;
-            color: #cccccc;
-            font-size: 0.9rem;
+        /* Categories Section */
+        .categories-section {
+            padding: 40px 0;
         }
 
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: #fff3f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            color: #ff6b35;
+        }
+
+        .category-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-section p {
+            color: #bdc3c7;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icon.facebook { background: #3b5998; }
+        .social-icon.instagram { background: #e4405f; }
+        .social-icon.youtube { background: #ff0000; }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .title {
-                font-size: 2rem;
-                margin-bottom: 30px;
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
             }
-            .carousel-container {
-                max-width: 95%;
+
+            .search-container {
+                order: 3;
+                max-width: 100%;
             }
-            .story-content {
-                padding: 25px;
-                margin: 15px;
+
+            .banner-grid {
+                grid-template-columns: 1fr;
             }
-            .page-title {
-                font-size: 1.2rem;
+
+            .banner-content h2 {
+                font-size: 24px;
             }
-            .story-text {
-                font-size: 0.9rem;
+
+            .categories-list {
+                padding-bottom: 10px;
             }
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-            .indicators {
-                gap: 6px;
-            }
-            .indicator {
-                width: 8px;
-                height: 8px;
+
+            .top-bar-right {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="stars-container" id="starsContainer"></div>
-    
-    <div class="container">
-        <h1 class="title">Lucas e o Herói do Vento</h1>
-        
-        <div class="carousel-container">
-            <div class="carousel" id="carousel">
-                <!-- Página 1 -->
-                <div class="story-page page-1">
-                    <div class="story-content">
-                        <h2 class="page-title">🏔️ O Menino e a Vila</h2>
-                        <div class="story-text">
-                            <p>Numa vila cercada por montanhas azuis, morava um menino chamado Lucas.</p>
-                            <p>Ele tinha olhos curiosos e um sorriso que iluminava tudo ao redor.</p>
-                            <p>A vila era pequena, mas cheia de vida, com passarinhos cantando e borboletas voando.</p>
-                            <p>Lucas adorava correr no quintal com os braços abertos, como se voasse.</p>
-                            <p>Transformava pedras em monstros, folhas em naves e galhos em espadas mágicas.</p>
-                            <p>Mesmo com tantos brinquedos e fantasias, havia algo que ele ainda não sabia explicar.</p>
-                            <p>Um ventinho no peito, um sentimento diferente... como se estivesse esperando por algo.</p>
-                        </div>
+    <!-- Header -->
+    <header>
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="top-bar-left">
+                        <span><i class="fas fa-map-marker-alt"></i> Entregamos em todo Brasil</span>
+                        <span><i class="fas fa-truck"></i> Frete Grátis acima de R$ 199</span>
                     </div>
-                </div>
-
-                <!-- Página 2 -->
-                <div class="story-page page-2">
-                    <div class="story-content">
-                        <h2 class="page-title">🏠 A Casa de Lucas</h2>
-                        <div class="story-text">
-                            <p>Lucas morava com sua mãe, que o amava mais que tudo.</p>
-                            <p>Ela fazia panquecas engraçadas em forma de coração.</p>
-                            <p>Contava histórias de dragões, dinossauros e planetas de sorvete.</p>
-                            <p>Eles riam juntos, se abraçavam e se cobriam com cobertores coloridos à noite.</p>
-                            <p>A casa era cheia de brinquedos espalhados por todo canto.</p>
-                            <p>Lucas era alegria em forma de menino.</p>
-                            <p>Mas mesmo nos dias mais divertidos, ele olhava o céu como quem procurava algo.</p>
-                            <p>E o vento parecia saber também.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 3 -->
-                <div class="story-page page-3">
-                    <div class="story-content">
-                        <h2 class="page-title">✨ O Sopro do Coração</h2>
-                        <div class="story-text">
-                            <p>Na vila, havia uma história antiga que todos contavam.</p>
-                            <p>Era sobre o misterioso Herói do Vento.</p>
-                            <p>Diziam que ele era guiado pelos sussurros do céu.</p>
-                            <p>Não carregava espada, nem capa brilhante.</p>
-                            <p>Carregava apenas um coração corajoso e cheio de amor.</p>
-                            <p>Contavam que ele aparecia quando o vento mudava.</p>
-                            <p>O Herói do Vento parecia vir de longe, de um lugar feito de lembranças.</p>
-                            <p>Lucas acreditava que um dia o vento sopraria diferente.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 4 -->
-                <div class="story-page page-4">
-                    <div class="story-content">
-                        <h2 class="page-title">🌅 O Dia Começa Diferente</h2>
-                        <div class="story-text">
-                            <p>Naquela manhã, o vento soprou mais forte.</p>
-                            <p>Não era um vento qualquer.</p>
-                            <p>Era um vento morno, que cheirava a abraço.</p>
-                            <p>Lucas sentiu algo diferente ao acordar.</p>
-                            <p>O céu estava azul, mas tinha um brilho dourado no ar.</p>
-                            <p>Quando dançou, o vento girou com ele.</p>
-                            <p>Parecia que tudo estava brincando junto.</p>
-                            <p>Lucas olhou para o céu e sussurrou: "Hoje o vento está sorrindo..."</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 5 -->
-                <div class="story-page page-5">
-                    <div class="story-content">
-                        <h2 class="page-title">🍃 O Vento Brinca com Lucas</h2>
-                        <div class="story-text">
-                            <p>Lucas correu até a árvore grande no fundo do quintal.</p>
-                            <p>De repente, uma folha caiu devagar do galho mais alto.</p>
-                            <p>Ela girava no ar como se dançasse junto com ele.</p>
-                            <p>Lucas girou também, rindo alto.</p>
-                            <p>O carrinho de controle remoto ligou sozinho.</p>
-                            <p>Lucas achou aquilo mágico.</p>
-                            <p>O vento fazia cócegas no seu pescoço.</p>
-                            <p>E então, pela primeira vez, ele perguntou em voz alta: "Herói do Vento... você está me ouvindo?"</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 6 -->
-                <div class="story-page page-6">
-                    <div class="story-content">
-                        <h2 class="page-title">🪶 O Chamado Invisível</h2>
-                        <div class="story-text">
-                            <p>O vento parou por um instante, como se escutasse a pergunta de Lucas.</p>
-                            <p>Tudo ficou quieto... como se o mundo prendesse a respiração.</p>
-                            <p>De um galho alto, caiu uma pena branca, girando devagar.</p>
-                            <p>Ela pousou na mão de Lucas, como se o escolhesse.</p>
-                            <p>Era leve, brilhante... cheia de silêncio bonito.</p>
-                            <p>E então, uma voz suave, que parecia feita de nuvem e memória, sussurrou:</p>
-                            <p><em>"Ainda não posso voltar... mas estou perto. Continue ouvindo."</em></p>
-                            <p>Lucas sentiu que alguém o via e cuidava dele.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 7 -->
-                <div class="story-page page-7">
-                    <div class="story-content">
-                        <h2 class="page-title">💌 Sinais no Vento</h2>
-                        <div class="story-text">
-                            <p>Depois da pena, tudo ficou mais vivo.</p>
-                            <p>O vento parecia ter olhos, coração, vontade.</p>
-                            <p>Nas manhãs, balançava as cortinas só para acordar Lucas com carinho.</p>
-                            <p>À tarde, fazia o velotrol andar sozinho por alguns segundos.</p>
-                            <p>À noite, embalava as folhas como canção de ninar.</p>
-                            <p>Ele começou a deixar bilhetes perto da árvore do quintal.</p>
-                            <p>Às vezes, no dia seguinte, o bilhete sumia.</p>
-                            <p>E no lugar... havia uma flor caída, uma nova pena, ou só um vento gostoso.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 8 -->
-                <div class="story-page page-8">
-                    <div class="story-content">
-                        <h2 class="page-title">⭐ A Promessa no Céu</h2>
-                        <div class="story-text">
-                            <p>Certa noite, Lucas olhou para o céu mais tempo que de costume.</p>
-                            <p>As estrelas pareciam piscando só para ele.</p>
-                            <p>O vento sussurrava, baixinho, como quem contava uma história antiga.</p>
-                            <p>Lucas se deitou na grama, com a mão no peito.</p>
-                            <p>Fechou os olhos e escutou com o coração:</p>
-                            <p><em>"Quando você for ainda mais forte, eu virei. Quando o tempo for certo."</em></p>
-                            <p>Sentiu algo como saudade... e coragem ao mesmo tempo.</p>
-                            <p>Ele sabia: o herói existia. Só estava esperando a hora certa.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 9 -->
-                <div class="story-page page-9">
-                    <div class="story-content">
-                        <h2 class="page-title">☀️ Um Dia Só dos Dois</h2>
-                        <div class="story-text">
-                            <p>Era sábado, e Lucas acordou mais cedo que o sol.</p>
-                            <p>"Hoje é nosso dia, mãe!" disse, pulando na cama dela.</p>
-                            <p>Tomaram café com pão de queijo e morango picado.</p>
-                            <p>Depois, montaram uma cabana de lençóis na sala.</p>
-                            <p>Lá dentro, a mãe contou histórias inventadas e Lucas criou finais diferentes.</p>
-                            <p>A tarde passou devagar, como um carinho longo.</p>
-                            <p>A mãe segurou a mão de Lucas e disse: "Os melhores dias são quando estamos juntos."</p>
-                            <p>Lucas sorriu e encostou a cabeça no ombro dela.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 10 -->
-                <div class="story-page page-10">
-                    <div class="story-content">
-                        <h2 class="page-title">💙 As Coisas que o Amor Guarda</h2>
-                        <div class="story-text">
-                            <p>Certa noite, enquanto Lucas dormia, a mãe abriu uma caixa de memórias.</p>
-                            <p>Ali estavam fotos antigas, desenhos que Lucas fizera, e um par de luvas azuis.</p>
-                            <p>No dia seguinte, encontrou a mãe na cozinha, distraída.</p>
-                            <p>"Mãe, você tá pensando no herói?"</p>
-                            <p>Ela se abaixou e o abraçou apertado.</p>
-                            <p>"Tô pensando em como você é forte, mesmo tão pequeno."</p>
-                            <p>"E tem alguém que ainda vai te ajudar muito mais."</p>
-                            <p>Lucas fechou os olhos e guardou aquelas palavras bem fundo.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 11 -->
-                <div class="story-page page-11">
-                    <div class="story-content">
-                        <h2 class="page-title">⭐ O Herói Está Voltando</h2>
-                        <div class="story-text">
-                            <p>Os dias passaram como folhas levadas pelo tempo.</p>
-                            <p>Uma noite, enquanto olhavam o céu deitados na grama, ela disse:</p>
-                            <p>"Quando a gente ama muito alguém, ele nunca vai embora de verdade."</p>
-                            <p>Lucas apontou para uma estrela que parecia piscar mais forte.</p>
-                            <p>"Aquela ali... parece que tá vindo devagarinho."</p>
-                            <p>"É. Às vezes, voltar leva tempo. Mas o amor sempre encontra o caminho."</p>
-                            <p>Lucas apertou a pena branca que guardava no bolso.</p>
-                            <p>E pela primeira vez, sem precisar dizer em voz alta, ele soube: o Herói do Vento estava voltando.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Página 12 -->
-                <div class="story-page page-12">
-                    <div class="story-content">
-                        <h2 class="page-title">🌟 O Fim</h2>
-                        <div class="story-text">
-                            <p>Até que, numa tarde dourada, o vento soprou diferente.</p>
-                            <p>Era forte, mas doce. Antigo, mas novo.</p>
-                            <p>E lá, no campo escondido, uma sombra se formou diante da árvore.</p>
-                            <p>A figura usava capa de vento e olhos que brilhavam como os dele.</p>
-                            <p>Não disse nada. Mas se ajoelhou e abriu os braços.</p>
-                            <p>Lucas correu e se jogou no abraço.</p>
-                            <p>E naquele abraço, o vento sussurrou:</p>
-                            <p><em>"Eu sempre estive aqui, mesmo quando você não me via."</em></p>
-                            <p><strong>Porque enfim, o vento tinha voltado pra casa. E o herói... também.</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Final com Áudio -->
-                <div class="story-page story-finale">
-                    <div class="story-container">
-                        <h3 class="story-title">🎵 O Final da Jornada</h3>
-                        <p class="story-subtitle">Michael Bolton - Fathers & Daughters</p>
-                        <audio class="audio-player" controls preload="metadata" autoplay>
-                            <source src="audio.mp3" type="audio/mpeg">
-                            <p>Seu navegador não suporta o elemento de áudio.</p>
-                        </audio>
-                        <p class="story-description">
-                            "E assim, Lucas completou sua jornada épica ao lado do Herói do Vento. 
-                            Uma história de coragem, amizade e descobertas que ecoará para sempre 
-                            nos ventos da memória..."
-                        </p>
+                    <div class="top-bar-right">
+                        <span>Baixe o App</span>
+                        <span>Cartão Casas Bahia</span>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="carousel-controls">
-            <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
-            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">Casas Bahia</div>
+                    
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="O que você está procurando?">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="header-actions">
+                        <button class="header-btn">
+                            <i class="fas fa-user"></i>
+                            <span style="margin-left: 5px; display: none;">Minha Conta</span>
+                        </button>
+                        <button class="header-btn">
+                            <i class="fas fa-heart"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="header-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">2</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="indicators" id="indicators"></div>
-        
-        <p class="page-counter">
-            <span id="current-page">1</span> de <span id="total-pages">13</span> páginas
-        </p>
-    </div>
+
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="container">
+                <div class="categories-list">
+                    <a href="#" class="category-link">Celulares</a>
+                    <a href="#" class="category-link">Eletrodomésticos</a>
+                    <a href="#" class="category-link">TV e Som</a>
+                    <a href="#" class="category-link">Informática</a>
+                    <a href="#" class="category-link">Casa e Decoração</a>
+                    <a href="#" class="category-link">Móveis</a>
+                    <a href="#" class="category-link">Cama, Mesa e Banho</a>
+                    <a href="#" class="category-link">Esporte e Lazer</a>
+                    <a href="#" class="category-link">Beleza e Saúde</a>
+                    <a href="#" class="category-link">Moda</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Banner -->
+    <section class="banner-section">
+        <div class="container">
+            <div class="banner-grid">
+                <div class="banner-card">
+                    <div class="banner-content">
+                        <h2>Black Friday Antecipada</h2>
+                        <p>Até 70% OFF + Frete Grátis</p>
+                        <button class="btn-primary">Ver Ofertas</button>
+                    </div>
+                </div>
+                <div class="banner-card blue">
+                    <div class="banner-content">
+                        <h2>Eletrodomésticos</h2>
+                        <p>Até 50% OFF sem juros</p>
+                        <button class="btn-primary">Ver Ofertas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h4>Frete Grátis</h4>
+                        <p>Acima de R$ 199</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h4>Parcelamento</h4>
+                        <p>Até 12x sem juros</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h4>Compra Segura</h4>
+                        <p>Seus dados protegidos</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h4>Melhor Preço</h4>
+                        <p>Garantia de preço</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ofertas Imperdíveis</h2>
+                <button class="btn-outline">Ver Todas</button>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop" alt="iPhone 15 Pro Max">
+                        <div class="discount-badge">10% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>iPhone 15 Pro Max 256GB</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 9.999,00</div>
+                            <div class="current-price">R$ 8.999,00</div>
+                            <div class="installments">12x R$ 749,92</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=300&fit=crop" alt="Smart TV Samsung">
+                        <div class="discount-badge">24% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart TV 65" 4K Samsung</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.6</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 3.299,00</div>
+                            <div class="current-price">R$ 2.499,00</div>
+                            <div class="installments">10x R$ 249,90</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=300&h=300&fit=crop" alt="Geladeira Brastemp">
+                        <div class="discount-badge">21% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Geladeira Brastemp 400L Frost Free</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.7</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 2.399,00</div>
+                            <div class="current-price">R$ 1.899,00</div>
+                            <div class="installments">12x R$ 158,25</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=300&fit=crop" alt="Notebook Lenovo">
+                        <div class="discount-badge">21% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Notebook Lenovo i5 8GB 256GB SSD</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.5</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 2.799,00</div>
+                            <div class="current-price">R$ 2.199,00</div>
+                            <div class="installments">10x R$ 219,90</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop" alt="Máquina de Lavar">
+                        <div class="discount-badge">30% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Máquina de Lavar Electrolux 12kg</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.9</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 1.999,00</div>
+                            <div class="current-price">R$ 1.399,00</div>
+                            <div class="installments">10x R$ 139,90</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=300&h=300&fit=crop" alt="Air Fryer">
+                        <div class="discount-badge">35% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Air Fryer Philips Walita 4L</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.6</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 599,00</div>
+                            <div class="current-price">R$ 389,00</div>
+                            <div class="installments">6x R$ 64,83</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop" alt="Tênis Nike">
+                        <div class="discount-badge">25% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Tênis Nike Air Max 270</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 799,00</div>
+                            <div class="current-price">R$ 599,00</div>
+                            <div class="installments">8x R$ 74,88</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop" alt="Headphone">
+                        <div class="discount-badge">40% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Headphone JBL Tune 750BTNC</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.4</span>
+                        </div>
+                        <div class="product-prices">
+                            <div class="original-price">R$ 499,00</div>
+                            <div class="current-price">R$ 299,00</div>
+                            <div class="installments">5x R$ 59,80</div>
+                        </div>
+                        <button class="btn-buy">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Compre por Categoria</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="category-name">Celulares</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-blender"></i>
+                    </div>
+                    <div class="category-name">Eletrodomésticos</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="category-name">TV e Som</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="category-name">Informática</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="category-name">Casa e Decoração</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="category-name">Móveis</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="category-name">Cama, Mesa e Banho</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-football-ball"></i>
+                    </div>
+                    <div class="category-name">Esporte e Lazer</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="category-name">Beleza e Saúde</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="category-name">Moda</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Casas Bahia</h3>
+                    <p>A maior rede de varejo do Brasil, oferecendo os melhores produtos com preços incríveis e condições especiais para toda a família.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Sobre</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Quem Somos</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Programa de Afiliados</a></li>
+                        <li><a href="#">Sustentabilidade</a></li>
+                        <li><a href="#">Imprensa</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Casas Bahia. Todos os direitos reservados. CNPJ: 33.041.260/0001-56</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Função para criar estrelas animadas
-        function createStars() {
-            const starsContainer = document.getElementById('starsContainer');
-            const numberOfStars = 150;
-            
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const sizes = ['small', 'medium', 'large'];
-                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
-                star.classList.add(randomSize);
-                
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                
-                starsContainer.appendChild(star);
+        // Simple search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value;
+            if (searchTerm) {
+                alert('Buscando por: ' + searchTerm);
             }
-        }
+        });
 
-        // Código do carrossel
-        let currentSlide = 0;
-        const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('.story-page');
-        const totalSlides = slides.length;
-        const indicatorsContainer = document.getElementById('indicators');
-
-        function createIndicators() {
-            for (let i = 0; i < totalSlides; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                indicator.onclick = () => goToSlide(i);
-                indicatorsContainer.appendChild(indicator);
-            }
-            updateIndicators();
-        }
-
-        function updateIndicators() {
-            const indicators = document.querySelectorAll('.indicator');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        function updateCounter() {
-            document.getElementById('current-page').textContent = currentSlide + 1;
-            document.getElementById('total-pages').textContent = totalSlides;
-        }
-
-        function goToSlide(slideIndex) {
-            const audioElements = document.querySelectorAll('audio');
-            audioElements.forEach(audio => {
-                if (!audio.paused) {
-                    audio.pause();
+        // Enter key search
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value;
+                if (searchTerm) {
+                    alert('Buscando por: ' + searchTerm);
                 }
+            }
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.btn-buy').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('h3').textContent;
+                alert('Produto adicionado ao carrinho: ' + productName);
+                
+                // Update cart badge
+                const cartBadge = document.querySelector('.fa-shopping-cart').nextElementSibling;
+                const currentCount = parseInt(cartBadge.textContent);
+                cartBadge.textContent = currentCount + 1;
             });
-
-            currentSlide = slideIndex;
-            const translateX = -currentSlide * 100;
-            carousel.style.transform = `translateX(${translateX}%)`;
-            updateIndicators();
-            updateCounter();
-            
-            // Auto-play do áudio no último slide
-            if (currentSlide === totalSlides - 1) {
-                setTimeout(() => {
-                    const audioElement = document.querySelector('.story-finale audio');
-                    if (audioElement) {
-                        audioElement.play().catch(error => {
-                            console.log('Autoplay bloqueado pelo navegador:', error);
-                        });
-                    }
-                }, 500);
-            }
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            goToSlide(currentSlide);
-        }
-
-        function previousSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            goToSlide(currentSlide);
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') previousSlide();
-            else if (e.key === 'ArrowRight') nextSlide();
         });
 
-        let startX = 0;
-        let endX = 0;
-
-        carousel.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
+        // Category click functionality
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const categoryName = this.querySelector('.category-name').textContent;
+                alert('Navegando para categoria: ' + categoryName);
+            });
         });
 
-        carousel.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) nextSlide();
-                else previousSlide();
-            }
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            createStars();
-            createIndicators();
-            updateCounter();
+        // Banner buttons
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Redirecionando para ofertas especiais!');
+            });
         });
     </script>
 </body>
