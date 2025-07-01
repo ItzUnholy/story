@@ -39,32 +39,91 @@
         /* Estilos do contador de visitas */
         .visit-counter {
             background: rgba(255, 255, 255, 0.9);
-            padding: 15px 25px;
+            padding: 20px 30px;
             border-radius: 25px;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: inline-block;
             backdrop-filter: blur(10px);
+            max-width: 600px;
         }
         
         .visit-counter h3 {
             color: #4a90e2;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
             font-weight: bold;
         }
         
         .visit-count {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #333;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
         }
         
         .visit-details {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #666;
-            margin-top: 5px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .location-info {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .current-location {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .cities-list {
+            max-height: 120px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .city-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            margin: 2px 0;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .city-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .city-count {
+            background: #4a90e2;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .loading {
+            color: #999;
+            font-style: italic;
         }
 
         .carousel-container {
@@ -193,11 +252,15 @@
                 font-size: 1.2rem;
             }
             .visit-counter {
-                padding: 10px 20px;
+                padding: 15px 20px;
                 margin-bottom: 20px;
+                max-width: 95%;
             }
             .visit-count {
                 font-size: 1.5rem;
+            }
+            .cities-list {
+                max-height: 100px;
             }
         }
     </style>
@@ -213,6 +276,19 @@
             <div class="visit-details">
                 Primeira visita: <span id="firstVisit">--</span><br>
                 Última visita: <span id="lastVisit">--</span>
+            </div>
+            
+            <div class="location-info">
+                <div class="current-location" id="currentLocation">
+                    📍 <span class="loading">Detectando localização...</span>
+                </div>
+                
+                <div>
+                    <strong>🌍 Cidades dos Visitantes:</strong>
+                    <div class="cities-list" id="citiesList">
+                        <div class="loading">Carregando dados de localização...</div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -335,33 +411,157 @@
             }
         }
 
-        // CONTADOR DE VISITAS
+        // CONTADOR DE VISITAS COM LOCALIZAÇÃO
         class VisitCounter {
             constructor() {
                 this.storageKey = 'lucasHeroiVento_visits';
+                this.citiesKey = 'lucasHeroiVento_cities';
                 this.init();
             }
 
-            init() {
+            async init() {
                 this.updateVisitCount();
                 this.displayVisitInfo();
+                await this.detectAndSaveLocation();
+                this.displayCities();
             }
 
             updateVisitCount() {
                 const now = new Date();
                 const visitData = this.getVisitData();
                 
-                // Incrementa o contador
                 visitData.count += 1;
                 visitData.lastVisit = now.toISOString();
                 
-                // Define primeira visita se não existir
                 if (!visitData.firstVisit) {
                     visitData.firstVisit = now.toISOString();
                 }
                 
-                // Salva os dados
                 this.saveVisitData(visitData);
+            }
+
+            async detectAndSaveLocation() {
+                try {
+                    // Usando múltiplas APIs como fallback
+                    let locationData = await this.getLocationFromAPI();
+                    
+                    if (locationData) {
+                        this.saveLocationData(locationData);
+                        this.displayCurrentLocation(locationData);
+                    } else {
+                        this.displayCurrentLocation({ city: 'Localização não detectada', country: '', flag: '🌍' });
+                    }
+                } catch (error) {
+                    console.warn('Erro ao detectar localização:', error);
+                    this.displayCurrentLocation({ city: 'Erro na detecção', country: '', flag: '❌' });
+                }
+            }
+
+            async getLocationFromAPI() {
+                // Lista de APIs gratuitas para tentar
+                const apis = [
+                    {
+                        url: 'https://ipapi.co/json/',
+                        parser: (data) => ({
+                            city: data.city || 'Cidade não identificada',
+                            country: data.country_name || data.country || '',
+                            flag: this.getCountryFlag(data.country_code || data.country)
+                        })
+                    },
+                    {
+                        url: 'https://ipinfo.io/json',
+                        parser: (data) => ({
+                            city: data.city || 'Cidade não identificada',
+                            country: data.country || '',
+                            flag: this.getCountryFlag(data.country)
+                        })
+                    },
+                    {
+                        url: 'https://api.ipify.org?format=json',
+                        parser: async (data) => {
+                            // Esta API só retorna o IP, precisaríamos de outra chamada
+                            return null;
+                        }
+                    }
+                ];
+
+                for (const api of apis) {
+                    try {
+                        const response = await fetch(api.url, { timeout: 5000 });
+                        if (response.ok) {
+                            const data = await response.json();
+                            const locationData = await api.parser(data);
+                            if (locationData && locationData.city !== 'Cidade não identificada') {
+                                return locationData;
+                            }
+                        }
+                    } catch (error) {
+                        console.warn(`Erro na API ${api.url}:`, error);
+                        continue;
+                    }
+                }
+
+                return null;
+            }
+
+            getCountryFlag(countryCode) {
+                const flags = {
+                    'BR': '🇧🇷', 'US': '🇺🇸', 'CA': '🇨🇦', 'GB': '🇬🇧', 'DE': '🇩🇪',
+                    'FR': '🇫🇷', 'IT': '🇮🇹', 'ES': '🇪🇸', 'PT': '🇵🇹', 'AR': '🇦🇷',
+                    'MX': '🇲🇽', 'JP': '🇯🇵', 'CN': '🇨🇳', 'IN': '🇮🇳', 'AU': '🇦🇺'
+                };
+                return flags[countryCode] || '🌍';
+            }
+
+            saveLocationData(locationData) {
+                const cities = this.getCitiesData();
+                const cityKey = `${locationData.city}, ${locationData.country}`.trim().replace(/,$/, '');
+                
+                if (cities[cityKey]) {
+                    cities[cityKey].count += 1;
+                    cities[cityKey].lastVisit = new Date().toISOString();
+                } else {
+                    cities[cityKey] = {
+                        count: 1,
+                        flag: locationData.flag,
+                        firstVisit: new Date().toISOString(),
+                        lastVisit: new Date().toISOString()
+                    };
+                }
+                
+                this.saveCitiesData(cities);
+            }
+
+            displayCurrentLocation(locationData) {
+                const currentLocationElement = document.getElementById('currentLocation');
+                const locationText = locationData.country 
+                    ? `${locationData.city}, ${locationData.country}`
+                    : locationData.city;
+                
+                currentLocationElement.innerHTML = `${locationData.flag} Você está em: <strong>${locationText}</strong>`;
+            }
+
+            displayCities() {
+                const cities = this.getCitiesData();
+                const citiesListElement = document.getElementById('citiesList');
+                
+                if (Object.keys(cities).length === 0) {
+                    citiesListElement.innerHTML = '<div class="loading">Nenhuma cidade registrada ainda</div>';
+                    return;
+                }
+
+                // Ordena cidades por número de visitas (decrescente)
+                const sortedCities = Object.entries(cities)
+                    .sort(([,a], [,b]) => b.count - a.count);
+
+                const citiesHTML = sortedCities.map(([cityName, data]) => `
+                    <div class="city-item">
+                        <span class="city-name">${data.flag} ${cityName}</span>
+                        <span class="city-count">${data.count}</span>
+                    </div>
+                `).join('');
+
+                citiesListElement.innerHTML = citiesHTML;
             }
 
             getVisitData() {
@@ -380,11 +580,29 @@
                 }
             }
 
+            getCitiesData() {
+                try {
+                    const stored = localStorage.getItem(this.citiesKey);
+                    return stored ? JSON.parse(stored) : {};
+                } catch (error) {
+                    console.warn('Erro ao ler dados de cidades:', error);
+                    return {};
+                }
+            }
+
             saveVisitData(data) {
                 try {
                     localStorage.setItem(this.storageKey, JSON.stringify(data));
                 } catch (error) {
                     console.warn('Erro ao salvar dados de visita:', error);
+                }
+            }
+
+            saveCitiesData(data) {
+                try {
+                    localStorage.setItem(this.citiesKey, JSON.stringify(data));
+                } catch (error) {
+                    console.warn('Erro ao salvar dados de cidades:', error);
                 }
             }
 
@@ -410,17 +628,15 @@
             displayVisitInfo() {
                 const visitData = this.getVisitData();
                 
-                // Atualiza o contador com animação
                 this.animateCounter(visitData.count);
                 
-                // Atualiza as datas
                 document.getElementById('firstVisit').textContent = this.formatDate(visitData.firstVisit);
                 document.getElementById('lastVisit').textContent = this.formatDate(visitData.lastVisit);
             }
 
             animateCounter(targetCount) {
                 const counterElement = document.getElementById('visitCount');
-                const duration = 1000; // 1 segundo
+                const duration = 1000;
                 const startTime = performance.now();
                 const startCount = 0;
 
@@ -428,7 +644,6 @@
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
                     
-                    // Easing function (ease-out)
                     const easeOut = 1 - Math.pow(1 - progress, 3);
                     const currentCount = Math.floor(startCount + (targetCount - startCount) * easeOut);
                     
@@ -442,21 +657,22 @@
                 requestAnimationFrame(animate);
             }
 
-            // Método para resetar o contador (útil para testes)
+            // Método para resetar todos os dados
             reset() {
                 localStorage.removeItem(this.storageKey);
-                this.init();
+                localStorage.removeItem(this.citiesKey);
+                location.reload();
             }
         }
 
-        // Inicializa o contador de visitas
+        // Inicializa o contador de visitas com localização
         const visitCounter = new VisitCounter();
 
         // Inicializa o carrossel
         createIndicators();
         updateCounter();
 
-        // Para fins de demonstração, você pode descomentar a linha abaixo para resetar o contador
+        // Para fins de demonstração, descomente para resetar:
         // visitCounter.reset();
     </script>
 </body>
