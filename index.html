@@ -41,7 +41,8 @@
             background: rgba(255, 255, 255, 0.9);
             padding: 20px 30px;
             border-radius: 25px;
-            margin-bottom: 30px;
+            margin-top: 30px;
+            margin-bottom: 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: inline-block;
             backdrop-filter: blur(10px);
@@ -268,7 +269,7 @@
 <body>
     <div class="container">
         <h1 class="title">Lucas e o Herói do Vento</h1>
-
+        
         <div class="carousel-container">
             <div class="carousel" id="carousel">
                 <div class="carousel-item"><img src="https://i.imgur.com/coWBxDK.png" alt="Foto 1"></div>
@@ -306,10 +307,10 @@
         <p class="photo-counter">
             <span id="current-photo">1</span> de <span id="total-photos">17</span> itens
         </p>
-    </div>
-        
+
         <!-- Contador de Visitas -->
         <div class="visit-counter">
+            <h3>👥 Visitantes</h3>
             <div class="visit-count" id="visitCount">0</div>
             <div class="visit-details">
                 Primeira visita: <span id="firstVisit">--</span><br>
@@ -329,7 +330,7 @@
                 </div>
             </div>
         </div>
-        
+    </div>
 
     <script>
         // Código do carrossel (mantido original)
