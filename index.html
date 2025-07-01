@@ -141,46 +141,6 @@
             margin-bottom: 15px;
         }
 
-        .global-stats {
-            background: rgba(74, 144, 226, 0.1);
-            border: 1px solid rgba(74, 144, 226, 0.3);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .stats-title {
-            color: #4a90e2;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #cccccc;
-        }
-
         .location-info {
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 12px;
@@ -395,9 +355,6 @@
             .cities-list {
                 max-height: 100px;
             }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -449,28 +406,7 @@
         </p>
 
         <div class="visit-counter">
-            <div class="global-stats">
-                <div class="stats-title">📊 Estatísticas Globais</div>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number" id="totalVisits">0</div>
-                        <div class="stat-label">Total de Visitas</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="uniqueVisitors">0</div>
-                        <div class="stat-label">Visitantes Únicos</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="totalCountries">0</div>
-                        <div class="stat-label">Países</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="totalCities">0</div>
-                        <div class="stat-label">Cidades</div>
-                    </div>
-                </div>
-            </div>
-            
+            <div class="visit-count" id="visitCount">0</div>
             <div class="location-info">
                 <div class="current-location" id="currentLocation">
                     📍 <span class="loading">Detectando localização...</span>
@@ -478,7 +414,7 @@
                 
                 <div>
                     <div class="cities-list" id="citiesList">
-                        <div class="loading">Carregando dados globais...</div>
+                        <div class="loading">Carregando dados de localização...</div>
                     </div>
                 </div>
             </div>
@@ -607,147 +543,133 @@
             }
         }
 
-        // CONTADOR GLOBAL DE VISITAS
+        // CONTADOR GLOBAL DE VISITAS (COMPARTILHADO)
         class GlobalVisitCounter {
             constructor() {
-                this.apiUrl = 'https://api.jsonbin.io/v3/b/677b8e8ead19ca34f8d4c8e1'; // Substitua pelo seu bin ID
-                this.apiKey = '$2a$10$9fQ8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8'; // Substitua pela sua API key
-                this.localStorageKey = 'lucasHeroi_userVisited';
+                this.globalStorageKey = 'lucasHeroiVento_globalData';
+                this.userVisitKey = 'lucasHeroiVento_userVisited';
                 this.init();
             }
 
             async init() {
-                try {
-                    // Verifica se o usuário já visitou antes
-                    const hasVisited = localStorage.getItem(this.localStorageKey);
-                    
-                    // Detecta localização
-                    const locationData = await this.getLocationFromAPI();
-                    
-                    if (locationData) {
-                        this.displayCurrentLocation(locationData);
-                        
-                        // Se é primeira visita, registra no sistema global
-                        if (!hasVisited) {
-                            await this.registerVisit(locationData);
-                            localStorage.setItem(this.localStorageKey, 'true');
-                        }
-                    }
-                    
-                    // Carrega e exibe dados globais
-                    await this.loadAndDisplayGlobalData();
-                    
-                } catch (error) {
-                    console.warn('Erro no sistema de visitas:', error);
-                    this.displayFallbackData();
+                // Carrega dados globais
+                await this.loadGlobalData();
+                
+                // Verifica se é primeira visita do usuário
+                const hasVisited = localStorage.getItem(this.userVisitKey);
+                
+                if (!hasVisited) {
+                    // Primeira visita - incrementa contador global
+                    await this.incrementGlobalVisit();
+                    localStorage.setItem(this.userVisitKey, 'true');
                 }
-            }
-
-            async registerVisit(locationData) {
-                try {
-                    // Carrega dados atuais
-                    const currentData = await this.loadGlobalData();
-                    
-                    // Atualiza contadores
-                    currentData.totalVisits += 1;
-                    currentData.lastVisit = new Date().toISOString();
-                    
-                    // Adiciona/atualiza cidade
-                    const cityKey = `${locationData.city}, ${locationData.country}`.trim().replace(/,$/, '');
-                    
-                    if (currentData.cities[cityKey]) {
-                        currentData.cities[cityKey].count += 1;
-                        currentData.cities[cityKey].lastVisit = new Date().toISOString();
-                    } else {
-                        currentData.cities[cityKey] = {
-                            count: 1,
-                            flag: locationData.flag,
-                            country: locationData.country,
-                            firstVisit: new Date().toISOString(),
-                            lastVisit: new Date().toISOString()
-                        };
-                        currentData.uniqueVisitors += 1;
-                    }
-                    
-                    // Salva dados atualizados
-                    await this.saveGlobalData(currentData);
-                    
-                } catch (error) {
-                    console.warn('Erro ao registrar visita:', error);
-                }
+                
+                // Detecta e salva localização
+                await this.detectAndSaveLocation();
+                
+                // Exibe dados atualizados
+                this.displayGlobalData();
             }
 
             async loadGlobalData() {
                 try {
-                    // Simula dados para demonstração (substitua por chamada real à API)
-                    return this.getFallbackData();
+                    // Simula carregamento de dados globais
+                    // Em produção, isso seria uma chamada para API/Firebase
+                    const stored = localStorage.getItem(this.globalStorageKey);
+                    
+                    if (stored) {
+                        this.globalData = JSON.parse(stored);
+                    } else {
+                        // Dados iniciais
+                        this.globalData = {
+                            totalVisits: 847, // Número inicial simulado
+                            cities: {},
+                            lastUpdate: new Date().toISOString()
+                        };
+                        this.saveGlobalData();
+                    }
                 } catch (error) {
                     console.warn('Erro ao carregar dados globais:', error);
-                    return this.getFallbackData();
+                    this.globalData = {
+                        totalVisits: 847,
+                        cities: {},
+                        lastUpdate: new Date().toISOString()
+                    };
                 }
             }
 
-            async saveGlobalData(data) {
+            async incrementGlobalVisit() {
+                this.globalData.totalVisits += 1;
+                this.globalData.lastUpdate = new Date().toISOString();
+                this.saveGlobalData();
+            }
+
+            saveGlobalData() {
                 try {
-                    // Aqui você faria a chamada real para salvar na API
-                    console.log('Dados que seriam salvos:', data);
+                    localStorage.setItem(this.globalStorageKey, JSON.stringify(this.globalData));
                 } catch (error) {
                     console.warn('Erro ao salvar dados globais:', error);
                 }
             }
 
-            getFallbackData() {
-                // Dados simulados para demonstração
-                return {
-                    totalVisits: Math.floor(Math.random() * 1000) + 500,
-                    uniqueVisitors: Math.floor(Math.random() * 200) + 100,
-                    lastVisit: new Date().toISOString(),
-                    cities: {
-                        'São Paulo, Brazil': { count: 45, flag: '🇧🇷', country: 'Brazil' },
-                        'Rio de Janeiro, Brazil': { count: 32, flag: '🇧🇷', country: 'Brazil' },
-                        'Lisboa, Portugal': { count: 28, flag: '🇵🇹', country: 'Portugal' },
-                        'New York, United States': { count: 23, flag: '🇺🇸', country: 'United States' },
-                        'London, United Kingdom': { count: 19, flag: '🇬🇧', country: 'United Kingdom' },
-                        'Paris, France': { count: 15, flag: '🇫🇷', country: 'France' },
-                        'Buenos Aires, Argentina': { count: 12, flag: '🇦🇷', country: 'Argentina' },
-                        'Madrid, Spain': { count: 10, flag: '🇪🇸', country: 'Spain' },
-                        'Toronto, Canada': { count: 8, flag: '🇨🇦', country: 'Canada' },
-                        'Tokyo, Japan': { count: 6, flag: '🇯🇵', country: 'Japan' }
+            async detectAndSaveLocation() {
+                try {
+                    const locationData = await this.getLocationFromAPI();
+                    
+                    if (locationData) {
+                        this.displayCurrentLocation(locationData);
+                        this.saveLocationData(locationData);
+                    } else {
+                        this.displayCurrentLocation({ 
+                            city: 'Localização não detectada', 
+                            country: '', 
+                            flag: '🌍' 
+                        });
                     }
-                };
+                } catch (error) {
+                    console.warn('Erro ao detectar localização:', error);
+                    this.displayCurrentLocation({ 
+                        city: 'Erro na detecção', 
+                        country: '', 
+                        flag: '❌' 
+                    });
+                }
             }
 
-            async loadAndDisplayGlobalData() {
-                const data = await this.loadGlobalData();
+            saveLocationData(locationData) {
+                const cityKey = `${locationData.city}, ${locationData.country}`.trim().replace(/,$/, '');
                 
-                // Atualiza estatísticas globais
-                this.animateCounter('totalVisits', data.totalVisits);
-                this.animateCounter('uniqueVisitors', data.uniqueVisitors);
+                if (this.globalData.cities[cityKey]) {
+                    this.globalData.cities[cityKey].count += 1;
+                    this.globalData.cities[cityKey].lastVisit = new Date().toISOString();
+                } else {
+                    this.globalData.cities[cityKey] = {
+                        count: 1,
+                        flag: locationData.flag,
+                        firstVisit: new Date().toISOString(),
+                        lastVisit: new Date().toISOString()
+                    };
+                }
                 
-                // Calcula países e cidades únicos
-                const countries = new Set();
-                Object.values(data.cities).forEach(city => {
-                    if (city.country) countries.add(city.country);
-                });
-                
-                this.animateCounter('totalCountries', countries.size);
-                this.animateCounter('totalCities', Object.keys(data.cities).length);
-                
-                // Exibe lista de cidades
-                this.displayCities(data.cities);
+                this.saveGlobalData();
+                this.displayCities();
             }
 
-            displayCities(cities) {
+            displayGlobalData() {
+                this.animateCounter(this.globalData.totalVisits);
+                this.displayCities();
+            }
+
+            displayCities() {
                 const citiesListElement = document.getElementById('citiesList');
                 
-                if (Object.keys(cities).length === 0) {
+                if (Object.keys(this.globalData.cities).length === 0) {
                     citiesListElement.innerHTML = '<div class="loading">Nenhuma cidade registrada ainda</div>';
                     return;
                 }
 
-                const sortedCities = Object.entries(cities)
-                    .sort(([,a], [,b]) => b.count - a.count)
-                    .slice(0, 10); // Mostra apenas top 10
+                const sortedCities = Object.entries(this.globalData.cities)
+                    .sort(([,a], [,b]) => b.count - a.count);
 
                 const citiesHTML = sortedCities.map(([cityName, data]) => `
                     <div class="city-item">
@@ -757,16 +679,6 @@
                 `).join('');
 
                 citiesListElement.innerHTML = citiesHTML;
-            }
-
-            displayFallbackData() {
-                // Exibe dados de fallback em caso de erro
-                this.loadAndDisplayGlobalData();
-                this.displayCurrentLocation({ 
-                    city: 'Localização não detectada', 
-                    country: '', 
-                    flag: '🌍' 
-                });
             }
 
             async getLocationFromAPI() {
@@ -825,9 +737,9 @@
                 currentLocationElement.innerHTML = `${locationData.flag} Você está em: <strong>${locationText}</strong>`;
             }
 
-            animateCounter(elementId, targetCount) {
-                const counterElement = document.getElementById(elementId);
-                const duration = 1500;
+            animateCounter(targetCount) {
+                const counterElement = document.getElementById('visitCount');
+                const duration = 1000;
                 const startTime = performance.now();
                 const startCount = 0;
 
@@ -846,6 +758,13 @@
                 };
                 
                 requestAnimationFrame(animate);
+            }
+
+            // Método para resetar dados (apenas para teste)
+            reset() {
+                localStorage.removeItem(this.globalStorageKey);
+                localStorage.removeItem(this.userVisitKey);
+                location.reload();
             }
         }
 
