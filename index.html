@@ -10,63 +10,139 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Background de estrelas animadas */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        .star.small {
+            width: 1px;
+            height: 1px;
+            animation-duration: 2s;
+        }
+
+        .star.medium {
+            width: 2px;
+            height: 2px;
+            animation-duration: 3s;
+        }
+
+        .star.large {
+            width: 3px;
+            height: 3px;
+            animation-duration: 4s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(45deg, #fff, #4a90e2);
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(-100px) translateY(100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(-100px);
+                opacity: 0;
+            }
+        }
+
         .container {
             max-width: 800px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
+
         .title {
             font-size: 2.5rem;
-            color: #333;
+            color: #ffffff;
             margin-bottom: 10px;
             font-weight: bold;
+            text-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
         }
+
         .subtitle {
-            color: #666;
+            color: #cccccc;
             margin-bottom: 40px;
             font-size: 1.1rem;
         }
-        
+
         /* Estilos do contador de visitas */
         .visit-counter {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 15px 25px;
             border-radius: 20px;
             margin-top: 25px;
             margin-bottom: 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             display: inline-block;
-            backdrop-filter: blur(10px);
             max-width: 600px;
         }
-        
+
         .visit-counter h3 {
             color: #4a90e2;
             font-size: 1.1rem;
             margin-bottom: 15px;
             font-weight: bold;
         }
-        
+
         .visit-count {
             font-size: 2rem;
             font-weight: bold;
-            color: #333;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 15px;
         }
-        
 
         .location-info {
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 12px;
             margin-top: 0;
         }
@@ -79,12 +155,14 @@
             margin-bottom: 15px;
             font-size: 0.9rem;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .cities-list {
             max-height: 120px;
             overflow-y: auto;
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 10px;
             margin-top: 10px;
@@ -96,15 +174,15 @@
             align-items: center;
             padding: 5px 10px;
             margin: 2px 0;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             font-size: 0.8rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .city-name {
             font-weight: 500;
-            color: #333;
+            color: #ffffff;
         }
 
         .city-count {
@@ -117,7 +195,7 @@
         }
 
         .loading {
-            color: #999;
+            color: #cccccc;
             font-style: italic;
         }
 
@@ -127,16 +205,20 @@
             margin: 0 auto;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
+
         .carousel-item {
             min-width: 100%;
             position: relative;
         }
+
         .carousel-item img {
             width: 100%;
             height: auto;
@@ -144,6 +226,7 @@
             aspect-ratio: 705/975;
             object-fit: cover;
         }
+
         .carousel-item.audio-item {
             display: flex;
             flex-direction: column;
@@ -153,30 +236,35 @@
             aspect-ratio: 705/975;
             padding: 40px;
         }
+
         .audio-container {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             text-align: center;
             max-width: 400px;
             width: 100%;
         }
+
         .audio-title {
             font-size: 1.5rem;
             color: #333;
             margin-bottom: 20px;
             font-weight: bold;
         }
+
         .audio-player {
             width: 100%;
             margin-bottom: 15px;
         }
+
         .audio-description {
             color: #666;
             font-size: 0.9rem;
             line-height: 1.4;
         }
+
         .carousel-controls {
             display: flex;
             justify-content: center;
@@ -184,46 +272,56 @@
             gap: 30px;
             margin-top: 20px;
         }
+
         .carousel-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             width: 50px;
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: #ffffff;
             transition: all 0.3s ease;
         }
+
         .carousel-btn:hover {
-            background: white;
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(74, 144, 226, 0.4);
         }
+
         .indicators {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
         }
+
         .indicator {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
+
         .indicator.active {
             background: #4a90e2;
             transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
         }
+
         .photo-counter {
             margin-top: 20px;
-            color: #666;
+            color: #cccccc;
             font-size: 0.9rem;
         }
+
         @media (max-width: 768px) {
             .title {
                 font-size: 2rem;
@@ -261,6 +359,8 @@
     </style>
 </head>
 <body>
+    <div class="stars-container" id="starsContainer"></div>
+    
     <div class="container">
         <h1 class="title">Lucas e o Herói do Vento</h1>
         
@@ -293,17 +393,20 @@
                 </div>
             </div>
         </div>
+        
         <div class="carousel-controls">
             <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
             <button class="carousel-btn next" onclick="nextSlide()">›</button>
         </div>
+        
         <div class="indicators" id="indicators"></div>
+        
         <p class="photo-counter">
             <span id="current-photo">1</span> de <span id="total-photos">17</span> itens
         </p>
 
         <div class="visit-counter">
-            
+            <div class="visit-count" id="visitCount">0</div>
             <div class="location-info">
                 <div class="current-location" id="currentLocation">
                     📍 <span class="loading">Detectando localização...</span>
@@ -319,6 +422,53 @@
     </div>
 
     <script>
+        // Função para criar estrelas animadas
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            const numberOfStars = 150;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Tamanhos aleatórios
+                const sizes = ['small', 'medium', 'large'];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                star.classList.add(randomSize);
+                
+                // Posições aleatórias
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Delay aleatório para animação
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Criar estrelas cadentes ocasionais
+            setInterval(createShootingStar, 3000);
+        }
+        
+        function createShootingStar() {
+            const starsContainer = document.getElementById('starsContainer');
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            
+            // Posição inicial aleatória
+            shootingStar.style.top = Math.random() * 50 + '%';
+            shootingStar.style.left = '-100px';
+            
+            starsContainer.appendChild(shootingStar);
+            
+            // Remove a estrela cadente após a animação
+            setTimeout(() => {
+                if (shootingStar.parentNode) {
+                    shootingStar.parentNode.removeChild(shootingStar);
+                }
+            }, 3000);
+        }
+
         // Código do carrossel (mantido original)
         let currentSlide = 0;
         const carousel = document.getElementById('carousel');
@@ -355,6 +505,7 @@
                     audio.pause();
                 }
             });
+
             currentSlide = slideIndex;
             const translateX = -currentSlide * 100;
             carousel.style.transform = `translateX(${translateX}%)`;
@@ -392,6 +543,7 @@
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = startX - endX;
+
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) nextSlide();
                 else previousSlide();
@@ -429,7 +581,6 @@
 
             async detectAndSaveLocation() {
                 try {
-                    // Usando múltiplas APIs como fallback
                     let locationData = await this.getLocationFromAPI();
                     
                     if (locationData) {
@@ -445,7 +596,6 @@
             }
 
             async getLocationFromAPI() {
-                // Lista de APIs gratuitas para tentar
                 const apis = [
                     {
                         url: 'https://ipapi.co/json/',
@@ -462,13 +612,6 @@
                             country: data.country || '',
                             flag: this.getCountryFlag(data.country)
                         })
-                    },
-                    {
-                        url: 'https://api.ipify.org?format=json',
-                        parser: async (data) => {
-                            // Esta API só retorna o IP, precisaríamos de outra chamada
-                            return null;
-                        }
                     }
                 ];
 
@@ -487,7 +630,6 @@
                         continue;
                     }
                 }
-
                 return null;
             }
 
@@ -537,7 +679,6 @@
                     return;
                 }
 
-                // Ordena cidades por número de visitas (decrescente)
                 const sortedCities = Object.entries(cities)
                     .sort(([,a], [,b]) => b.count - a.count);
 
@@ -593,25 +734,6 @@
                 }
             }
 
-            formatDate(dateString) {
-                if (!dateString) return '--';
-                
-                const date = new Date(dateString);
-                const now = new Date();
-                const diffTime = Math.abs(now - date);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                if (diffDays === 1) {
-                    return 'Hoje';
-                } else if (diffDays === 2) {
-                    return 'Ontem';
-                } else if (diffDays <= 7) {
-                    return `${diffDays - 1} dias atrás`;
-                } else {
-                    return date.toLocaleDateString('pt-BR');
-                }
-            }
-
             displayVisitInfo() {
                 const visitData = this.getVisitData();
                 this.animateCounter(visitData.count);
@@ -640,7 +762,6 @@
                 requestAnimationFrame(animate);
             }
 
-            // Método para resetar todos os dados
             reset() {
                 localStorage.removeItem(this.storageKey);
                 localStorage.removeItem(this.citiesKey);
@@ -648,15 +769,13 @@
             }
         }
 
-        // Inicializa o contador de visitas com localização
-        const visitCounter = new VisitCounter();
-
-        // Inicializa o carrossel
-        createIndicators();
-        updateCounter();
-
-        // Para fins de demonstração, descomente para resetar:
-        // visitCounter.reset();
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            const visitCounter = new VisitCounter();
+            createIndicators();
+            updateCounter();
+        });
     </script>
 </body>
 </html>
