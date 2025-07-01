@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -20,24 +19,52 @@
             justify-content: center;
             padding: 20px;
         }
-
         .container {
             max-width: 800px;
             width: 100%;
             text-align: center;
         }
-
         .title {
             font-size: 2.5rem;
             color: #333;
             margin-bottom: 10px;
             font-weight: bold;
         }
-
         .subtitle {
             color: #666;
             margin-bottom: 40px;
             font-size: 1.1rem;
+        }
+        
+        /* Estilos do contador de visitas */
+        .visit-counter {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+        
+        .visit-counter h3 {
+            color: #4a90e2;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .visit-count {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .visit-details {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
         }
 
         .carousel-container {
@@ -48,17 +75,14 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
         .carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-
         .carousel-item {
             min-width: 100%;
             position: relative;
         }
-
         .carousel-item img {
             width: 100%;
             height: auto;
@@ -66,7 +90,6 @@
             aspect-ratio: 705/975;
             object-fit: cover;
         }
-
         .carousel-item.audio-item {
             display: flex;
             flex-direction: column;
@@ -76,7 +99,6 @@
             aspect-ratio: 705/975;
             padding: 40px;
         }
-
         .audio-container {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
@@ -86,25 +108,21 @@
             max-width: 400px;
             width: 100%;
         }
-
         .audio-title {
             font-size: 1.5rem;
             color: #333;
             margin-bottom: 20px;
             font-weight: bold;
         }
-
         .audio-player {
             width: 100%;
             margin-bottom: 15px;
         }
-
         .audio-description {
             color: #666;
             font-size: 0.9rem;
             line-height: 1.4;
         }
-
         .carousel-controls {
             display: flex;
             justify-content: center;
@@ -112,7 +130,6 @@
             gap: 30px;
             margin-top: 20px;
         }
-
         .carousel-btn {
             background: rgba(255, 255, 255, 0.9);
             border: none;
@@ -125,20 +142,17 @@
             color: #333;
             transition: all 0.3s ease;
         }
-
         .carousel-btn:hover {
             background: white;
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-
         .indicators {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
         }
-
         .indicator {
             width: 12px;
             height: 12px;
@@ -147,44 +161,43 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .indicator.active {
             background: #4a90e2;
             transform: scale(1.2);
         }
-
         .photo-counter {
             margin-top: 20px;
             color: #666;
             font-size: 0.9rem;
         }
-
         @media (max-width: 768px) {
             .title {
                 font-size: 2rem;
             }
-
             .carousel-container {
                 max-width: 90%;
             }
-
             .carousel-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 18px;
             }
-
             .carousel-controls {
                 gap: 20px;
             }
-
             .audio-container {
                 padding: 20px;
                 margin: 20px;
             }
-
             .audio-title {
                 font-size: 1.2rem;
+            }
+            .visit-counter {
+                padding: 10px 20px;
+                margin-bottom: 20px;
+            }
+            .visit-count {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -192,7 +205,17 @@
 <body>
     <div class="container">
         <h1 class="title">Lucas e o Herói do Vento</h1>
-
+        
+        <!-- Contador de Visitas -->
+        <div class="visit-counter">
+            <h3>👥 Visitantes</h3>
+            <div class="visit-count" id="visitCount">0</div>
+            <div class="visit-details">
+                Primeira visita: <span id="firstVisit">--</span><br>
+                Última visita: <span id="lastVisit">--</span>
+            </div>
+        </div>
+        
         <div class="carousel-container">
             <div class="carousel" id="carousel">
                 <div class="carousel-item"><img src="https://i.imgur.com/coWBxDK.png" alt="Foto 1"></div>
@@ -213,30 +236,27 @@
                 <div class="carousel-item"><img src="https://i.imgur.com/TpoBYjS.png" alt="Foto 16"></div>
                 <div class="carousel-item audio-item">
                     <div class="audio-container">
-        <h3 class="audio-title">🎵 Michael Bolton - Fathers & Daughters</h3>
-        <audio class="audio-player" controls preload="metadata">
-            <!-- Substitua pelo caminho do seu arquivo de áudio -->
-            <source src="audio.mp3" type="audio/mpeg">
-            <p>Seu navegador não suporta o elemento de áudio.</p>
-        </audio>
-    </div>
+                        <h3 class="audio-title">🎵 Michael Bolton - Fathers & Daughters</h3>
+                        <audio class="audio-player" controls preload="metadata">
+                            <source src="audio.mp3" type="audio/mpeg">
+                            <p>Seu navegador não suporta o elemento de áudio.</p>
+                        </audio>
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="carousel-controls">
             <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
             <button class="carousel-btn next" onclick="nextSlide()">›</button>
         </div>
-
         <div class="indicators" id="indicators"></div>
-
         <p class="photo-counter">
             <span id="current-photo">1</span> de <span id="total-photos">17</span> itens
         </p>
     </div>
 
     <script>
+        // Código do carrossel (mantido original)
         let currentSlide = 0;
         const carousel = document.getElementById('carousel');
         const slides = document.querySelectorAll('.carousel-item');
@@ -266,14 +286,12 @@
         }
 
         function goToSlide(slideIndex) {
-            // Pause any playing audio when changing slides
             const audioElements = document.querySelectorAll('audio');
             audioElements.forEach(audio => {
                 if (!audio.paused) {
                     audio.pause();
                 }
             });
-
             currentSlide = slideIndex;
             const translateX = -currentSlide * 100;
             carousel.style.transform = `translateX(${translateX}%)`;
@@ -311,15 +329,135 @@
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = startX - endX;
-
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) nextSlide();
                 else previousSlide();
             }
         }
 
+        // CONTADOR DE VISITAS
+        class VisitCounter {
+            constructor() {
+                this.storageKey = 'lucasHeroiVento_visits';
+                this.init();
+            }
+
+            init() {
+                this.updateVisitCount();
+                this.displayVisitInfo();
+            }
+
+            updateVisitCount() {
+                const now = new Date();
+                const visitData = this.getVisitData();
+                
+                // Incrementa o contador
+                visitData.count += 1;
+                visitData.lastVisit = now.toISOString();
+                
+                // Define primeira visita se não existir
+                if (!visitData.firstVisit) {
+                    visitData.firstVisit = now.toISOString();
+                }
+                
+                // Salva os dados
+                this.saveVisitData(visitData);
+            }
+
+            getVisitData() {
+                const defaultData = {
+                    count: 0,
+                    firstVisit: null,
+                    lastVisit: null
+                };
+                
+                try {
+                    const stored = localStorage.getItem(this.storageKey);
+                    return stored ? JSON.parse(stored) : defaultData;
+                } catch (error) {
+                    console.warn('Erro ao ler dados de visita:', error);
+                    return defaultData;
+                }
+            }
+
+            saveVisitData(data) {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(data));
+                } catch (error) {
+                    console.warn('Erro ao salvar dados de visita:', error);
+                }
+            }
+
+            formatDate(dateString) {
+                if (!dateString) return '--';
+                
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffTime = Math.abs(now - date);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 1) {
+                    return 'Hoje';
+                } else if (diffDays === 2) {
+                    return 'Ontem';
+                } else if (diffDays <= 7) {
+                    return `${diffDays - 1} dias atrás`;
+                } else {
+                    return date.toLocaleDateString('pt-BR');
+                }
+            }
+
+            displayVisitInfo() {
+                const visitData = this.getVisitData();
+                
+                // Atualiza o contador com animação
+                this.animateCounter(visitData.count);
+                
+                // Atualiza as datas
+                document.getElementById('firstVisit').textContent = this.formatDate(visitData.firstVisit);
+                document.getElementById('lastVisit').textContent = this.formatDate(visitData.lastVisit);
+            }
+
+            animateCounter(targetCount) {
+                const counterElement = document.getElementById('visitCount');
+                const duration = 1000; // 1 segundo
+                const startTime = performance.now();
+                const startCount = 0;
+
+                const animate = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing function (ease-out)
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const currentCount = Math.floor(startCount + (targetCount - startCount) * easeOut);
+                    
+                    counterElement.textContent = currentCount.toLocaleString('pt-BR');
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+            }
+
+            // Método para resetar o contador (útil para testes)
+            reset() {
+                localStorage.removeItem(this.storageKey);
+                this.init();
+            }
+        }
+
+        // Inicializa o contador de visitas
+        const visitCounter = new VisitCounter();
+
+        // Inicializa o carrossel
         createIndicators();
         updateCounter();
+
+        // Para fins de demonstração, você pode descomentar a linha abaixo para resetar o contador
+        // visitCounter.reset();
     </script>
 </body>
 </html>
