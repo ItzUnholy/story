@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Samuel</title>
+    <title>Lucas e o Herói do Vento - História Completa</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Georgia', serif;
             background: #0a0a0a;
             min-height: 100vh;
             display: flex;
@@ -64,32 +64,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        .shooting-star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: linear-gradient(45deg, #fff, #4a90e2);
-            border-radius: 50%;
-            animation: shoot 3s linear infinite;
-        }
-
-        @keyframes shoot {
-            0% {
-                transform: translateX(-100px) translateY(100px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100vw) translateY(-100px);
-                opacity: 0;
-            }
-        }
-
         .container {
             max-width: 800px;
             width: 100%;
@@ -121,21 +95,365 @@
             transition: transform 0.5s ease-in-out;
         }
 
-        .carousel-item {
+        .story-page {
             min-width: 100%;
-            position: relative;
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            display: block;
             aspect-ratio: 705/975;
-            object-fit: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Container especial para o final da história */
-        .carousel-item.story-finale {
+        /* CONTAINER COM FUNDO ESCURO SÓLIDO PARA LEGIBILIDADE */
+        .story-content {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+
+        .page-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .story-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: left;
+            color: #F5F5F5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-weight: 500;
+        }
+
+        .story-text p {
+            margin-bottom: 12px;
+        }
+
+        /* EFEITOS MUITO MAIS VISÍVEIS */
+
+        /* Página 1 - Vila e Montanhas */
+        .page-1 {
+            background: linear-gradient(135deg, #1B4332 0%, #2D5016 50%, #52B788 100%);
+        }
+
+        .page-1::before {
+            content: '🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: butterflies 3s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes butterflies {
+            0% { transform: translateX(-15px) translateY(0px) rotate(0deg); }
+            50% { transform: translateX(15px) translateY(-15px) rotate(10deg); }
+            100% { transform: translateX(-15px) translateY(0px) rotate(0deg); }
+        }
+
+        /* Página 2 - Casa Acolhedora */
+        .page-2 {
+            background: linear-gradient(135deg, #7F4F24 0%, #A0522D 50%, #DEB887 100%);
+        }
+
+        .page-2::before {
+            content: '💖 💕 💗 💖 💕 💗 💖 💕';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: hearts 2s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes hearts {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(5deg); }
+        }
+
+        /* Página 3 - Lenda Mística */
+        .page-3 {
+            background: linear-gradient(135deg, #2F1B69 0%, #4B0082 50%, #663399 100%);
+        }
+
+        .page-3::before {
+            content: '✨ ⭐ 🌟 ✨ ⭐ 🌟 ✨ ⭐';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: mystical 4s linear infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes mystical {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Página 4 - Dia Dourado */
+        .page-4 {
+            background: linear-gradient(135deg, #B8860B 0%, #DAA520 50%, #FFD700 100%);
+        }
+
+        .page-4::before {
+            content: '✨ 🌟 ⭐ ✨ 🌟 ⭐ ✨ 🌟';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: goldSparkle 1.5s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes goldSparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Página 5 - Vento Brincalhão */
+        .page-5 {
+            background: linear-gradient(135deg, #1B4332 0%, #2D5016 50%, #52B788 100%);
+        }
+
+        .page-5::before {
+            content: '🍃 🍃 🍃 🍃 🍃 🍃 🍃 🍃';
+            position: absolute;
+            font-size: 5rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: windLeaves 2s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes windLeaves {
+            0% { transform: translateX(-25px) rotate(0deg); }
+            50% { transform: translateX(25px) rotate(180deg); }
+            100% { transform: translateX(-25px) rotate(360deg); }
+        }
+
+        /* Página 6 - Chamado Invisível */
+        .page-6 {
+            background: linear-gradient(135deg, #6A5ACD 0%, #8A2BE2 50%, #9932CC 100%);
+        }
+
+        .page-6::before {
+            content: '🪶 🪶 🪶 🪶 🪶 🪶';
+            position: absolute;
+            font-size: 5rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: featherFall 3s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes featherFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0.7; }
+            50% { opacity: 1; transform: translateY(0px) rotate(10deg); }
+            100% { transform: translateY(20px) rotate(20deg); opacity: 0.7; }
+        }
+
+        /* Página 7 - Sinais */
+        .page-7 {
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #87CEEB 100%);
+        }
+
+        .page-7::before {
+            content: '✉️ ⭐ 💌 ✉️ ⭐ 💌 ✉️ ⭐';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: floatingMessages 3s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes floatingMessages {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Página 8 - Promessa Noturna */
+        .page-8 {
+            background: linear-gradient(135deg, #191970 0%, #000080 50%, #4B0082 100%);
+        }
+
+        .page-8::before {
+            content: '⭐ ✨ 🌟 ⭐ ✨ 🌟 ⭐ ✨';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: twinklingStar 1.5s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes twinklingStar {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.4); }
+        }
+
+        /* Página 9 - Dia Especial */
+        .page-9 {
+            background: linear-gradient(135deg, #DAA520 0%, #F0E68C 50%, #FFFFE0 100%);
+        }
+
+        .page-9::before {
+            content: '☀️ ☀️ ☀️ ☀️ ☀️ ☀️';
+            position: absolute;
+            font-size: 5rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: gentleSun 3s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes gentleSun {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+        }
+
+        /* Página 10 - Memórias */
+        .page-10 {
+            background: linear-gradient(135deg, #8B7355 0%, #A0522D 50%, #D2B48C 100%);
+        }
+
+        .page-10::before {
+            content: '📷 💙 📝 🖼️ 💌 📷 💙 📝';
+            position: absolute;
+            font-size: 3.5rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: memories 4s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes memories {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(3deg); }
+            66% { transform: translateY(-5px) rotate(-3deg); }
+        }
+
+        /* Página 11 - Retorno */
+        .page-11 {
+            background: linear-gradient(135deg, #483D8B 0%, #6A5ACD 50%, #9370DB 100%);
+        }
+
+        .page-11::before {
+            content: '⭐ ⭐ ⭐ ⭐ ⭐ ⭐';
+            position: absolute;
+            font-size: 6rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: approachingStar 2s ease-in-out infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes approachingStar {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.6; }
+        }
+
+        /* Página 12 - Final Épico */
+        .page-12 {
+            background: linear-gradient(135deg, #FF4500 0%, #FF6347 25%, #FFD700 50%, #FFA500 75%, #FF8C00 100%);
+        }
+
+        .page-12::before {
+            content: '🎆 ✨ 🌟 ⭐ 🎇 🎆 ✨ 🌟';
+            position: absolute;
+            font-size: 4rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            animation: epicFinale 1.5s linear infinite;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes epicFinale {
+            0% { transform: translateY(0px) scale(1) rotate(0deg); }
+            50% { transform: translateY(-10px) scale(1.2) rotate(180deg); }
+            100% { transform: translateY(0px) scale(1) rotate(360deg); }
+        }
+
+        /* Final com Áudio - Mantido do código anterior */
+        .story-finale {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -147,7 +465,6 @@
             overflow: hidden;
         }
 
-        /* Efeitos de partículas douradas */
         .story-finale::before {
             content: '';
             position: absolute;
@@ -158,9 +475,7 @@
             background-image: 
                 radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
                 radial-gradient(2px 2px at 40px 70px, #ffed4e, transparent),
-                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
-                radial-gradient(1px 1px at 130px 80px, #ffed4e, transparent),
-                radial-gradient(2px 2px at 160px 30px, #ffd700, transparent);
+                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent);
             background-repeat: repeat;
             background-size: 200px 100px;
             animation: sparkle 3s linear infinite;
@@ -172,27 +487,7 @@
             100% { transform: translateY(-100px); }
         }
 
-        /* Efeito de páginas de livro */
-        .story-finale::after {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            right: 10%;
-            bottom: 10%;
-            background: 
-                linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%),
-                linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
-            animation: pageFlip 4s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes pageFlip {
-            0%, 100% { opacity: 0; transform: rotateY(0deg); }
-            50% { opacity: 1; transform: rotateY(5deg); }
-        }
-
-        .story-container {
+        .story-finale .story-container {
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(15px);
             padding: 40px;
@@ -208,41 +503,12 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        .story-title {
+        .story-finale .story-title {
             font-size: 1.8rem;
             color: #ffd700;
             margin-bottom: 15px;
             font-weight: bold;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            font-family: 'Georgia', serif;
-        }
-
-        .story-subtitle {
-            font-size: 1rem;
-            color: #e0e0e0;
-            margin-bottom: 25px;
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        .audio-player {
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .story-description {
-            color: #cccccc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-top: 15px;
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        /* Efeito de brilho no título */
-        .story-title {
             background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
             background-size: 200% 200%;
             -webkit-background-clip: text;
@@ -256,50 +522,28 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Partículas flutuantes */
-        .floating-particles {
-            position: absolute;
+        .story-finale .story-subtitle {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .story-finale .audio-player {
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.7;
-        }
-
-        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
-        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
-        .particle:nth-child(4) { left: 70%; animation-delay: 0.5s; }
-        .particle:nth-child(5) { left: 80%; animation-delay: 1.5s; }
-        .particle:nth-child(6) { left: 90%; animation-delay: 2.5s; }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(100px) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: translateY(90px) scale(1);
-            }
-            90% {
-                opacity: 1;
-                transform: translateY(-90px) scale(1);
-            }
-            100% {
-                transform: translateY(-100px) scale(0);
-                opacity: 0;
-            }
+        .story-finale .story-description {
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            font-style: italic;
+            opacity: 0.8;
         }
 
         .carousel-controls {
@@ -333,13 +577,14 @@
         .indicators {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .indicator {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
@@ -353,7 +598,7 @@
             box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
         }
 
-        .photo-counter {
+        .page-counter {
             margin-top: 20px;
             color: #cccccc;
             font-size: 0.9rem;
@@ -365,32 +610,36 @@
                 margin-bottom: 30px;
             }
             .carousel-container {
-                max-width: 90%;
+                max-width: 95%;
+            }
+            .story-content {
+                padding: 25px;
+                margin: 15px;
+            }
+            .page-title {
+                font-size: 1.2rem;
+            }
+            .story-text {
+                font-size: 0.9rem;
             }
             .carousel-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 18px;
             }
-            .carousel-controls {
-                gap: 20px;
+            .indicators {
+                gap: 6px;
             }
-            .story-container {
-                padding: 25px;
-                margin: 20px;
+            .indicator {
+                width: 8px;
+                height: 8px;
             }
-            .story-title {
-                font-size: 1.4rem;
+            /* Efeitos menores no mobile */
+            .page-1::before, .page-2::before, .page-3::before, .page-4::before,
+            .page-5::before, .page-6::before, .page-7::before, .page-8::before,
+            .page-9::before, .page-10::before, .page-11::before, .page-12::before {
+                font-size: 2.5rem;
             }
-            .story-subtitle {
-                font-size: 0.9rem;
-            }
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-            20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
         }
     </style>
 </head>
@@ -402,34 +651,215 @@
         
         <div class="carousel-container">
             <div class="carousel" id="carousel">
-                <div class="carousel-item"><img src="https://i.imgur.com/coWBxDK.png" alt="Foto 1"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/09QHP90.png" alt="Foto 2"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/AnVQY9w.png" alt="Foto 3"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/zpahjt1.png" alt="Foto 4"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/NpJZjzO.png" alt="Foto 5"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/1G5C1Wx.png" alt="Foto 7"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/JRH7ngI.png" alt="Foto 8"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/IfCEbdL.png" alt="Foto 9"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/z1NzSLE.png" alt="Foto 10"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/BKzUB8t.png" alt="Foto 11"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/i42FAIP.png" alt="Foto 12"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/WpvvEyT.png" alt="Foto 13"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/jTtdBdE.png" alt="Foto 14"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/wyokGqS.png" alt="Foto 15"></div>
-                <div class="carousel-item"><img src="https://i.imgur.com/TpoBYjS.png" alt="Foto 16"></div>
-                <div class="carousel-item story-finale">
-                    <div class="floating-particles">
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
+                <!-- Página 1 -->
+                <div class="story-page page-1">
+                    <div class="story-content">
+                        <h2 class="page-title">🏔️ O Menino e a Vila</h2>
+                        <div class="story-text">
+                            <p>Numa vila cercada por montanhas azuis, morava um menino chamado Lucas.</p>
+                            <p>Ele tinha olhos curiosos e um sorriso que iluminava tudo ao redor.</p>
+                            <p>A vila era pequena, mas cheia de vida, com passarinhos cantando e borboletas voando.</p>
+                            <p>Lucas adorava correr no quintal com os braços abertos, como se voasse.</p>
+                            <p>Transformava pedras em monstros, folhas em naves e galhos em espadas mágicas.</p>
+                            <p>Mesmo com tantos brinquedos e fantasias, havia algo que ele ainda não sabia explicar.</p>
+                            <p>Um ventinho no peito, um sentimento diferente... como se estivesse esperando por algo.</p>
+                        </div>
                     </div>
-                    <div class="story-container">
+                </div>
 
-                        <h3 class="story-title">Michael Bolton - Fathers & Daughters</h3>
+                <!-- Página 2 -->
+                <div class="story-page page-2">
+                    <div class="story-content">
+                        <h2 class="page-title">🏠 A Casa de Lucas</h2>
+                        <div class="story-text">
+                            <p>Lucas morava com sua mãe, que o amava mais que tudo.</p>
+                            <p>Ela fazia panquecas engraçadas em forma de coração.</p>
+                            <p>Contava histórias de dragões, dinossauros e planetas de sorvete.</p>
+                            <p>Eles riam juntos, se abraçavam e se cobriam com cobertores coloridos à noite.</p>
+                            <p>A casa era cheia de brinquedos espalhados por todo canto.</p>
+                            <p>Lucas era alegria em forma de menino.</p>
+                            <p>Mas mesmo nos dias mais divertidos, ele olhava o céu como quem procurava algo.</p>
+                            <p>E o vento parecia saber também.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 3 -->
+                <div class="story-page page-3">
+                    <div class="story-content">
+                        <h2 class="page-title">✨ O Sopro do Coração</h2>
+                        <div class="story-text">
+                            <p>Na vila, havia uma história antiga que todos contavam.</p>
+                            <p>Era sobre o misterioso Herói do Vento.</p>
+                            <p>Diziam que ele era guiado pelos sussurros do céu.</p>
+                            <p>Não carregava espada, nem capa brilhante.</p>
+                            <p>Carregava apenas um coração corajoso e cheio de amor.</p>
+                            <p>Contavam que ele aparecia quando o vento mudava.</p>
+                            <p>O Herói do Vento parecia vir de longe, de um lugar feito de lembranças.</p>
+                            <p>Lucas acreditava que um dia o vento sopraria diferente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 4 -->
+                <div class="story-page page-4">
+                    <div class="story-content">
+                        <h2 class="page-title">🌅 O Dia Começa Diferente</h2>
+                        <div class="story-text">
+                            <p>Naquela manhã, o vento soprou mais forte.</p>
+                            <p>Não era um vento qualquer.</p>
+                            <p>Era um vento morno, que cheirava a abraço.</p>
+                            <p>Lucas sentiu algo diferente ao acordar.</p>
+                            <p>O céu estava azul, mas tinha um brilho dourado no ar.</p>
+                            <p>Quando dançou, o vento girou com ele.</p>
+                            <p>Parecia que tudo estava brincando junto.</p>
+                            <p>Lucas olhou para o céu e sussurrou: "Hoje o vento está sorrindo..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 5 -->
+                <div class="story-page page-5">
+                    <div class="story-content">
+                        <h2 class="page-title">🍃 O Vento Brinca com Lucas</h2>
+                        <div class="story-text">
+                            <p>Lucas correu até a árvore grande no fundo do quintal.</p>
+                            <p>De repente, uma folha caiu devagar do galho mais alto.</p>
+                            <p>Ela girava no ar como se dançasse junto com ele.</p>
+                            <p>Lucas girou também, rindo alto.</p>
+                            <p>O carrinho de controle remoto ligou sozinho.</p>
+                            <p>Lucas achou aquilo mágico.</p>
+                            <p>O vento fazia cócegas no seu pescoço.</p>
+                            <p>E então, pela primeira vez, ele perguntou em voz alta: "Herói do Vento... você está me ouvindo?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 6 -->
+                <div class="story-page page-6">
+                    <div class="story-content">
+                        <h2 class="page-title">🪶 O Chamado Invisível</h2>
+                        <div class="story-text">
+                            <p>O vento parou por um instante, como se escutasse a pergunta de Lucas.</p>
+                            <p>Tudo ficou quieto... como se o mundo prendesse a respiração.</p>
+                            <p>De um galho alto, caiu uma pena branca, girando devagar.</p>
+                            <p>Ela pousou na mão de Lucas, como se o escolhesse.</p>
+                            <p>Era leve, brilhante... cheia de silêncio bonito.</p>
+                            <p>E então, uma voz suave, que parecia feita de nuvem e memória, sussurrou:</p>
+                            <p><em>"Ainda não posso voltar... mas estou perto. Continue ouvindo."</em></p>
+                            <p>Lucas sentiu que alguém o via e cuidava dele.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 7 -->
+                <div class="story-page page-7">
+                    <div class="story-content">
+                        <h2 class="page-title">💌 Sinais no Vento</h2>
+                        <div class="story-text">
+                            <p>Depois da pena, tudo ficou mais vivo.</p>
+                            <p>O vento parecia ter olhos, coração, vontade.</p>
+                            <p>Nas manhãs, balançava as cortinas só para acordar Lucas com carinho.</p>
+                            <p>À tarde, fazia o velotrol andar sozinho por alguns segundos.</p>
+                            <p>À noite, embalava as folhas como canção de ninar.</p>
+                            <p>Ele começou a deixar bilhetes perto da árvore do quintal.</p>
+                            <p>Às vezes, no dia seguinte, o bilhete sumia.</p>
+                            <p>E no lugar... havia uma flor caída, uma nova pena, ou só um vento gostoso.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 8 -->
+                <div class="story-page page-8">
+                    <div class="story-content">
+                        <h2 class="page-title">⭐ A Promessa no Céu</h2>
+                        <div class="story-text">
+                            <p>Certa noite, Lucas olhou para o céu mais tempo que de costume.</p>
+                            <p>As estrelas pareciam piscando só para ele.</p>
+                            <p>O vento sussurrava, baixinho, como quem contava uma história antiga.</p>
+                            <p>Lucas se deitou na grama, com a mão no peito.</p>
+                            <p>Fechou os olhos e escutou com o coração:</p>
+                            <p><em>"Quando você for ainda mais forte, eu virei. Quando o tempo for certo."</em></p>
+                            <p>Sentiu algo como saudade... e coragem ao mesmo tempo.</p>
+                            <p>Ele sabia: o herói existia. Só estava esperando a hora certa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 9 -->
+                <div class="story-page page-9">
+                    <div class="story-content">
+                        <h2 class="page-title">☀️ Um Dia Só dos Dois</h2>
+                        <div class="story-text">
+                            <p>Era sábado, e Lucas acordou mais cedo que o sol.</p>
+                            <p>"Hoje é nosso dia, mãe!" disse, pulando na cama dela.</p>
+                            <p>Tomaram café com pão de queijo e morango picado.</p>
+                            <p>Depois, montaram uma cabana de lençóis na sala.</p>
+                            <p>Lá dentro, a mãe contou histórias inventadas e Lucas criou finais diferentes.</p>
+                            <p>A tarde passou devagar, como um carinho longo.</p>
+                            <p>A mãe segurou a mão de Lucas e disse: "Os melhores dias são quando estamos juntos."</p>
+                            <p>Lucas sorriu e encostou a cabeça no ombro dela.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 10 -->
+                <div class="story-page page-10">
+                    <div class="story-content">
+                        <h2 class="page-title">💙 As Coisas que o Amor Guarda</h2>
+                        <div class="story-text">
+                            <p>Certa noite, enquanto Lucas dormia, a mãe abriu uma caixa de memórias.</p>
+                            <p>Ali estavam fotos antigas, desenhos que Lucas fizera, e um par de luvas azuis.</p>
+                            <p>No dia seguinte, encontrou a mãe na cozinha, distraída.</p>
+                            <p>"Mãe, você tá pensando no herói?"</p>
+                            <p>Ela se abaixou e o abraçou apertado.</p>
+                            <p>"Tô pensando em como você é forte, mesmo tão pequeno."</p>
+                            <p>"E tem alguém que ainda vai te ajudar muito mais."</p>
+                            <p>Lucas fechou os olhos e guardou aquelas palavras bem fundo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 11 -->
+                <div class="story-page page-11">
+                    <div class="story-content">
+                        <h2 class="page-title">⭐ O Herói Está Voltando</h2>
+                        <div class="story-text">
+                            <p>Os dias passaram como folhas levadas pelo tempo.</p>
+                            <p>Uma noite, enquanto olhavam o céu deitados na grama, ela disse:</p>
+                            <p>"Quando a gente ama muito alguém, ele nunca vai embora de verdade."</p>
+                            <p>Lucas apontou para uma estrela que parecia piscar mais forte.</p>
+                            <p>"Aquela ali... parece que tá vindo devagarinho."</p>
+                            <p>"É. Às vezes, voltar leva tempo. Mas o amor sempre encontra o caminho."</p>
+                            <p>Lucas apertou a pena branca que guardava no bolso.</p>
+                            <p>E pela primeira vez, sem precisar dizer em voz alta, ele soube: o Herói do Vento estava voltando.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 12 -->
+                <div class="story-page page-12">
+                    <div class="story-content">
+                        <h2 class="page-title">🌟 O Fim</h2>
+                        <div class="story-text">
+                            <p>Até que, numa tarde dourada, o vento soprou diferente.</p>
+                            <p>Era forte, mas doce. Antigo, mas novo.</p>
+                            <p>E lá, no campo escondido, uma sombra se formou diante da árvore.</p>
+                            <p>A figura usava capa de vento e olhos que brilhavam como os dele.</p>
+                            <p>Não disse nada. Mas se ajoelhou e abriu os braços.</p>
+                            <p>Lucas correu e se jogou no abraço.</p>
+                            <p>E naquele abraço, o vento sussurrou:</p>
+                            <p><em>"Eu sempre estive aqui, mesmo quando você não me via."</em></p>
+                            <p><strong>Porque enfim, o vento tinha voltado pra casa. E o herói... também.</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final com Áudio -->
+                <div class="story-page story-finale">
+                    <div class="story-container">
+                        <h3 class="story-title">🎵 O Final da Jornada</h3>
+                        <p class="story-subtitle">Michael Bolton - Fathers & Daughters</p>
                         <audio class="audio-player" controls preload="metadata" autoplay>
                             <source src="audio.mp3" type="audio/mpeg">
                             <p>Seu navegador não suporta o elemento de áudio.</p>
@@ -451,8 +881,8 @@
         
         <div class="indicators" id="indicators"></div>
         
-        <p class="photo-counter">
-            <span id="current-photo">1</span> de <span id="total-photos">17</span> itens
+        <p class="page-counter">
+            <span id="current-page">1</span> de <span id="total-pages">13</span> páginas
         </p>
     </div>
 
@@ -476,31 +906,12 @@
                 
                 starsContainer.appendChild(star);
             }
-            
-            setInterval(createShootingStar, 3000);
-        }
-        
-        function createShootingStar() {
-            const starsContainer = document.getElementById('starsContainer');
-            const shootingStar = document.createElement('div');
-            shootingStar.className = 'shooting-star';
-            
-            shootingStar.style.top = Math.random() * 50 + '%';
-            shootingStar.style.left = '-100px';
-            
-            starsContainer.appendChild(shootingStar);
-            
-            setTimeout(() => {
-                if (shootingStar.parentNode) {
-                    shootingStar.parentNode.removeChild(shootingStar);
-                }
-            }, 3000);
         }
 
         // Código do carrossel
         let currentSlide = 0;
         const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('.carousel-item');
+        const slides = document.querySelectorAll('.story-page');
         const totalSlides = slides.length;
         const indicatorsContainer = document.getElementById('indicators');
 
@@ -522,8 +933,8 @@
         }
 
         function updateCounter() {
-            document.getElementById('current-photo').textContent = currentSlide + 1;
-            document.getElementById('total-photos').textContent = totalSlides;
+            document.getElementById('current-page').textContent = currentSlide + 1;
+            document.getElementById('total-pages').textContent = totalSlides;
         }
 
         function goToSlide(slideIndex) {
@@ -540,18 +951,16 @@
             updateIndicators();
             updateCounter();
             
-            // Auto-play do áudio no último slide (slide do final da história)
+            // Auto-play do áudio no último slide
             if (currentSlide === totalSlides - 1) {
                 setTimeout(() => {
                     const audioElement = document.querySelector('.story-finale audio');
                     if (audioElement) {
                         audioElement.play().catch(error => {
                             console.log('Autoplay bloqueado pelo navegador:', error);
-                            // Mostra uma mensagem sutil para o usuário
-                            showAutoplayMessage();
                         });
                     }
-                }, 500); // Pequeno delay para suavizar a transição
+                }, 500);
             }
         }
 
@@ -590,33 +999,6 @@
                 if (diff > 0) nextSlide();
                 else previousSlide();
             }
-        }
-
-        function showAutoplayMessage() {
-            const storyContainer = document.querySelector('.story-container');
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: absolute;
-                top: -40px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(255, 215, 0, 0.9);
-                color: #000;
-                padding: 8px 15px;
-                border-radius: 20px;
-                font-size: 0.8rem;
-                animation: fadeInOut 3s ease-in-out;
-                z-index: 10;
-            `;
-            message.textContent = '🎵 Clique no play para ouvir a música!';
-            storyContainer.style.position = 'relative';
-            storyContainer.appendChild(message);
-            
-            setTimeout(() => {
-                if (message.parentNode) {
-                    message.parentNode.removeChild(message);
-                }
-            }, 3000);
         }
 
         // Inicialização
