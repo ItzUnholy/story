@@ -386,6 +386,12 @@
                 font-size: 0.9rem;
             }
         }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+        }
     </style>
 </head>
 <body>
@@ -424,7 +430,7 @@
                     <div class="story-container">
                         <h3 class="story-title">🎵 O Final da Jornada</h3>
                         <p class="story-subtitle">Michael Bolton - Fathers & Daughters</p>
-                        <audio class="audio-player" controls preload="metadata">
+                        <audio class="audio-player" controls preload="metadata" autoplay>
                             <source src="audio.mp3" type="audio/mpeg">
                             <p>Seu navegador não suporta o elemento de áudio.</p>
                         </audio>
@@ -533,6 +539,20 @@
             carousel.style.transform = `translateX(${translateX}%)`;
             updateIndicators();
             updateCounter();
+            
+            // Auto-play do áudio no último slide (slide do final da história)
+            if (currentSlide === totalSlides - 1) {
+                setTimeout(() => {
+                    const audioElement = document.querySelector('.story-finale audio');
+                    if (audioElement) {
+                        audioElement.play().catch(error => {
+                            console.log('Autoplay bloqueado pelo navegador:', error);
+                            // Mostra uma mensagem sutil para o usuário
+                            showAutoplayMessage();
+                        });
+                    }
+                }, 500); // Pequeno delay para suavizar a transição
+            }
         }
 
         function nextSlide() {
@@ -570,6 +590,33 @@
                 if (diff > 0) nextSlide();
                 else previousSlide();
             }
+        }
+
+        function showAutoplayMessage() {
+            const storyContainer = document.querySelector('.story-container');
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: absolute;
+                top: -40px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 215, 0, 0.9);
+                color: #000;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                animation: fadeInOut 3s ease-in-out;
+                z-index: 10;
+            `;
+            message.textContent = '🎵 Clique no play para ouvir a música!';
+            storyContainer.style.position = 'relative';
+            storyContainer.appendChild(message);
+            
+            setTimeout(() => {
+                if (message.parentNode) {
+                    message.parentNode.removeChild(message);
+                }
+            }, 3000);
         }
 
         // Inicialização
