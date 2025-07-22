@@ -134,6 +134,33 @@
             object-fit: cover;
         }
 
+        /* Frase inspiracional */
+        .inspirational-quote {
+            margin: 25px auto;
+            padding: 20px;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .quote-text {
+            color: #ffd700;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            font-family: 'Georgia', serif;
+            animation: gentleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gentleGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+        }
+
         /* Container especial para o final da história */
         .carousel-item.story-finale {
             display: flex;
@@ -364,26 +391,41 @@
                 font-size: 2rem;
                 margin-bottom: 30px;
             }
+
             .carousel-container {
                 max-width: 90%;
             }
+
             .carousel-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 18px;
             }
+
             .carousel-controls {
                 gap: 20px;
             }
+
             .story-container {
                 padding: 25px;
                 margin: 20px;
             }
+
             .story-title {
                 font-size: 1.4rem;
             }
+
             .story-subtitle {
                 font-size: 0.9rem;
+            }
+
+            .quote-text {
+                font-size: 1rem;
+            }
+
+            .inspirational-quote {
+                margin: 20px auto;
+                padding: 15px;
             }
         }
 
@@ -428,8 +470,8 @@
                         <div class="particle"></div>
                     </div>
                     <div class="story-container">
-                        <h3 class="story-title">🎵 O Final da Jornada</h3>
-                        <p class="story-subtitle">Michael Bolton - Fathers & Daughters</p>
+                        <h3 class="story-title">🎵 O Inicio, fim e recomeço.</h3>
+                        <p class="story-subtitle">Eminem - Mockingbird</p>
                         <audio class="audio-player" controls preload="metadata" autoplay>
                             <source src="audio.mp3" type="audio/mpeg">
                             <p>Seu navegador não suporta o elemento de áudio.</p>
@@ -443,40 +485,19 @@
                 </div>
             </div>
         </div>
+
+        <!-- Frase inspiracional adicionada -->
+        <div class="inspirational-quote">
+            <p class="quote-text">
+                "When all lighten, Daddy will be coming back, like the sun after the storm."
+            </p>
+        </div>
         
         <div class="carousel-controls">
             <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
             <button class="carousel-btn next" onclick="nextSlide()">›</button>
         </div>
-          <style>
-    body {
-      background-color: #f0f4ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .message {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      font-size: 1.5rem;
-      color: #333;
-      max-width: 600px;
-    }
-  </style>
-</head>
-<body>
-  <div class="message">
-    "When all lighten, Daddy will be coming back, like the sun after the storm."
-  </div>
-</body>
-</html>
+        
         <div class="indicators" id="indicators"></div>
         
         <p class="photo-counter">
