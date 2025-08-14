@@ -588,45 +588,7 @@
             
             <div class="carousel-container">
                 <div class="carousel" id="carousel">
-                    <div class="carousel-item"><img src="https://i.imgur.com/coWBxDK.png" alt="Foto 1"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/09QHP90.png" alt="Foto 2"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/AnVQY9w.png" alt="Foto 3"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/zpahjt1.png" alt="Foto 4"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/NpJZjzO.png" alt="Foto 5"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/FRqzXxI.png" alt="Foto 6"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/1G5C1Wx.png" alt="Foto 7"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/JRH7ngI.png" alt="Foto 8"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/IfCEbdL.png" alt="Foto 9"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/z1NzSLE.png" alt="Foto 10"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/BKzUB8t.png" alt="Foto 11"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/i42FAIP.png" alt="Foto 12"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/WpvvEyT.png" alt="Foto 13"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/jTtdBdE.png" alt="Foto 14"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/wyokGqS.png" alt="Foto 15"></div>
-                    <div class="carousel-item"><img src="https://i.imgur.com/TpoBYjS.png" alt="Foto 16"></div>
-                    <div class="carousel-item story-finale">
-                        <div class="floating-particles">
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                            <div class="particle"></div>
-                        </div>
-                        <div class="story-container">
-                            <h3 class="finale-title">🎵 Recomeço</h3>
-                            <p class="story-subtitle">Eminem - Mockingbird</p>
-                            <audio class="audio-player" controls preload="metadata">
-                                <source src="audio.mp3" type="audio/mpeg">
-                                <p>Seu navegador não suporta o elemento de áudio.</p>
-                            </audio>
-                            <p class="story-description">
-                                "E assim, Lucas completou sua jornada épica ao lado do Herói do Vento. 
-                                Uma história de coragem, amizade e descobertas que ecoará para sempre 
-                                nos ventos da memória..."
-                            </p>
-                        </div>
-                    </div>
+                    <!-- Imagens serão carregadas dinamicamente -->
                 </div>
             </div>
 
@@ -651,6 +613,53 @@
     </div>
 
     <script>
+        const stories = {
+            'lucas-hero': {
+                title: 'Lucas e o Herói do Vento',
+                images: [
+                    'https://i.imgur.com/coWBxDK.png',
+                    'https://i.imgur.com/09QHP90.png',
+                    'https://i.imgur.com/AnVQY9w.png',
+                    'https://i.imgur.com/zpahjt1.png',
+                    'https://i.imgur.com/NpJZjzO.png',
+                    'https://i.imgur.com/FRqzXxI.png',
+                    'https://i.imgur.com/1G5C1Wx.png',
+                    'https://i.imgur.com/JRH7ngI.png',
+                    'https://i.imgur.com/IfCEbdL.png',
+                    'https://i.imgur.com/z1NzSLE.png',
+                    'https://i.imgur.com/BKzUB8t.png',
+                    'https://i.imgur.com/i42FAIP.png',
+                    'https://i.imgur.com/WpvvEyT.png',
+                    'https://i.imgur.com/jTtdBdE.png',
+                    'https://i.imgur.com/wyokGqS.png',
+                    'https://i.imgur.com/TpoBYjS.png'
+                ],
+                finaleTitle: '🎵 Recomeço',
+                finaleSubtitle: 'Eminem - Mockingbird',
+                finaleDescription: 'E assim, Lucas completou sua jornada épica ao lado do Herói do Vento. Uma história de coragem, amizade e descobertas que ecoará para sempre nos ventos da memória...',
+                quote: 'When all lighten, Daddy will be coming back, like the sun after the storm.'
+            },
+            'outra-historia': {
+                title: 'Lucas e a Aventura Mágica',
+                images: [
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705',
+                    '/placeholder.svg?height=975&width=705'
+                ],
+                finaleTitle: '✨ Final Mágico',
+                finaleSubtitle: 'Uma Nova Jornada Começa',
+                finaleDescription: 'Lucas descobriu que a verdadeira magia estava dentro dele o tempo todo. Com novos poderes e amigos, ele está pronto para qualquer aventura que o destino trouxer...',
+                quote: 'A magia não está no que fazemos, mas em como escolhemos fazer a diferença no mundo.'
+            }
+        };
+
+        let currentStory = 'lucas-hero';
+
         // Função para criar estrelas animadas
         function createStars() {
             const starsContainer = document.getElementById('starsContainer');
@@ -691,8 +700,19 @@
             }, 3000);
         }
 
-        // Funções para controlar a navegação entre histórias
         function openStory(storyId) {
+            currentStory = storyId;
+            const story = stories[storyId];
+            
+            // Atualiza o título da história
+            document.getElementById('storyTitle').textContent = story.title;
+            
+            // Atualiza a frase inspiracional
+            document.querySelector('.quote-text').textContent = story.quote;
+            
+            // Reconstrói o carrossel com as imagens da história selecionada
+            buildCarousel(story);
+            
             const storiesSelection = document.getElementById('storiesSelection');
             const storyContainer = document.getElementById('storyContainer');
             
@@ -706,6 +726,43 @@
                 currentSlide = 0;
                 goToSlide(0);
             }, 300);
+        }
+
+        function buildCarousel(story) {
+            const carousel = document.getElementById('carousel');
+            carousel.innerHTML = '';
+            
+            // Adiciona as imagens da história
+            story.images.forEach((imageUrl, index) => {
+                const carouselItem = document.createElement('div');
+                carouselItem.className = 'carousel-item';
+                carouselItem.innerHTML = `<img src="${imageUrl}" alt="Foto ${index + 1}">`;
+                carousel.appendChild(carouselItem);
+            });
+            
+            // Adiciona o slide final especial
+            const finaleSlide = document.createElement('div');
+            finaleSlide.className = 'carousel-item story-finale';
+            finaleSlide.innerHTML = `
+                <div class="floating-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+                <div class="story-container">
+                    <h3 class="finale-title">${story.finaleTitle}</h3>
+                    <p class="story-subtitle">${story.finaleSubtitle}</p>
+                    ${currentStory === 'lucas-hero' ? '<audio class="audio-player" controls preload="metadata"><source src="audio.mp3" type="audio/mpeg"><p>Seu navegador não suporta o elemento de áudio.</p></audio>' : ''}
+                    <p class="story-description">${story.finaleDescription}</p>
+                </div>
+            `;
+            carousel.appendChild(finaleSlide);
+            
+            // Recria os indicadores
+            createIndicators();
         }
 
         function backToSelection() {
@@ -732,11 +789,17 @@
         // Código do carrossel
         let currentSlide = 0;
         const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('.carousel-item');
-        const totalSlides = slides.length;
+        let slides, totalSlides;
         const indicatorsContainer = document.getElementById('indicators');
 
         function createIndicators() {
+            // Limpa indicadores existentes
+            indicatorsContainer.innerHTML = '';
+            
+            // Recalcula slides e total
+            slides = document.querySelectorAll('.carousel-item');
+            totalSlides = slides.length;
+            
             for (let i = 0; i < totalSlides; i++) {
                 const indicator = document.createElement('div');
                 indicator.className = 'indicator';
@@ -744,6 +807,7 @@
                 indicatorsContainer.appendChild(indicator);
             }
             updateIndicators();
+            updateCounter();
         }
 
         function updateIndicators() {
@@ -772,8 +836,8 @@
             updateIndicators();
             updateCounter();
             
-            // Auto-play do áudio no último slide (slide do final da história)
-            if (currentSlide === totalSlides - 1) {
+            // Auto-play do áudio no último slide (apenas para a primeira história)
+            if (currentSlide === totalSlides - 1 && currentStory === 'lucas-hero') {
                 setTimeout(() => {
                     const audioElement = document.querySelector('.story-finale audio');
                     if (audioElement) {
@@ -787,11 +851,15 @@
         }
 
         function nextSlide() {
+            slides = document.querySelectorAll('.carousel-item');
+            totalSlides = slides.length;
             currentSlide = (currentSlide + 1) % totalSlides;
             goToSlide(currentSlide);
         }
 
         function previousSlide() {
+            slides = document.querySelectorAll('.carousel-item');
+            totalSlides = slides.length;
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             goToSlide(currentSlide);
         }
@@ -857,8 +925,8 @@
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
             createStars();
-            createIndicators();
-            updateCounter();
+            // Inicializa com a primeira história
+            buildCarousel(stories['lucas-hero']);
         });
     </script>
 </body>
