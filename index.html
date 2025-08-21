@@ -281,6 +281,92 @@
             transform: translateY(-1px);
         }
 
+        /* Efeito especial para o botão de história nova */
+        .story-button.new-story {
+            position: relative;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 25%, #45b7d1 50%, #96ceb4 75%, #ffeaa7 100%);
+            background-size: 300% 300%;
+            animation: rainbowGlow 3s ease-in-out infinite, newStoryPulse 2s ease-in-out infinite;
+            box-shadow: 
+                0 0 20px rgba(255, 107, 107, 0.4),
+                0 0 40px rgba(78, 205, 196, 0.3),
+                0 0 60px rgba(69, 183, 209, 0.2);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .story-button.new-story::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #ff6b6b);
+            background-size: 300% 300%;
+            border-radius: 28px;
+            z-index: -1;
+            animation: rainbowBorder 2s linear infinite;
+        }
+
+        .story-button.new-story::after {
+            content: 'NOVO!';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
+            animation: newBadgeWiggle 1.5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .story-button.new-story:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 0 30px rgba(255, 107, 107, 0.6),
+                0 0 50px rgba(78, 205, 196, 0.5),
+                0 0 70px rgba(69, 183, 209, 0.4);
+        }
+
+        @keyframes rainbowGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: hue-rotate(0deg);
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: hue-rotate(180deg);
+            }
+        }
+
+        @keyframes rainbowBorder {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        @keyframes newStoryPulse {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.02);
+                filter: brightness(1.1);
+            }
+        }
+
+        @keyframes newBadgeWiggle {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            25% { transform: rotate(3deg) scale(1.1); }
+            50% { transform: rotate(-2deg) scale(1); }
+            75% { transform: rotate(2deg) scale(1.05); }
+        }
+
         /* Container da história (inicialmente oculto) */
         .story-container-wrapper {
             opacity: 0;
@@ -616,7 +702,8 @@
             <button class="story-button" onclick="openStory('lucas-hero')">
                 Lucas e o Herói do Vento
             </button>
-            <button class="story-button" onclick="openStory('outra-historia')">
+            <!-- Adicionado classe new-story para efeito especial -->
+            <button class="story-button new-story" onclick="openStory('outra-historia')">
                 Lucas e o Resgate do Brinquedão
             </button>
         </div>
