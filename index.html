@@ -1,114 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I love u, L.</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem de Despedida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      background: linear-gradient(to bottom, #000000, #0a0a1a, #000000);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
 
-    .container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
 
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 3s infinite;
-    }
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
+        h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
 
-    .message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 10;
-      animation: fadeIn 2s ease-in;
-    }
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            opacity: 0.9;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .message h1 {
-      font-size: 1rem;
-      color: white;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-                   0 0 40px rgba(255, 255, 255, 0.5);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    /* Apenas um coração centralizado */
-    .hearts {
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-    }
-
-    .heart {
-      font-size: 0.75rem;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.2); opacity: 1; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div id="stars"></div>
+    <canvas id="stars-canvas"></canvas>
     
-    
-    <div class="message">
-      <h1>I love u, L.</h1>
-      <div class="hearts">
-        <span class="heart">❤️</span>
-      </div>
-    </div>
-  </div>
+    <div class="container">
+        <h1>Fim.</h1>
+        <p>
+            Quero encerrar essa conversa de um jeito sincero e sereno, porque, apesar de tudo o que já passamos e de todos os mal-entendidos, eu não quero deixar nada sem clareza. Não estou aqui para reviver o passado nem para tentar reabrir algo que você já entregou a Deus. Eu realmente entendo que você colocou sua vida nas mãos de Jesus, que sua caminhada hoje é guiada pela fé, e eu respeito profundamente isso. Entendo de verdade. Entendo seu novo caminho, suas escolhas, sua transformação. A sua vida está nas mãos de Deus, e eu não tenho nada além de respeito por isso.
 
-  <script>
-    const starsContainer = document.getElementById('stars');
-    
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.width = Math.random() * 3 + 'px';
-      star.style.height = star.style.width;
-      star.style.left = Math.random() * 100 + '%';
-      star.style.top = Math.random() * 100 + '%';
-      star.style.animationDelay = Math.random() * 3 + 's';
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      starsContainer.appendChild(star);
-    }
-  </script>
+E justamente por compreender isso, quero deixar claro que minhas intenções jamais foram contrariar o rumo que você escolheu. Eu nunca te procurei para tocar em feridas antigas, nem para trazer de volta algo que você encerrou diante de Deus. Tudo que eu tentei conversar tinha um único motivo: o Lucas. Ele é meu filho, é parte de mim, e tudo que eu fiz foi buscando o que fosse melhor para ele. Nunca, em momento algum, ele foi desculpa, ponte ou isca. Ele é meu amor, minha responsabilidade e meu compromisso. Nada além disso.
+
+Mas existe uma verdade que eu não quero guardar como se fosse algo errado. Apesar de tudo, eu ainda sinto amor por você. Não é um amor que exige, que cobra ou que tenta mudar o caminho que você escolheu diante de Deus. É um amor silencioso, verdadeiro, que eu aprendi a carregar com maturidade. Um amor que entende que nem sempre o que queremos é o que Deus quer pra nós naquele momento. E mesmo assim, ele existe.
+
+Sendo transparente: se um dia  por vontade sua, por decisão sua, por caminho que Deus coloque no seu coração você decidir voltar, eu aceitaria você. Não por desespero, não por dependência, mas porque meu sentimento é real. Mas isso não é um pedido, não é uma esperança forçada, não é uma pressão. É apenas sinceridade. A vida está nas mãos de Deus, não nas minhas. Ele guia os caminhos. Ele sabe o que faz. E eu respeito isso profundamente.
+
+Sobre o Lucas, por favor, guarde isso com certeza: ele nunca esteve e nunca estará abandonado por mim. Ele vive no meu coração de um jeito que nada e ninguém pode apagar. Eu sempre vou ser presente na vida dele. Sempre vou ser pai. Sempre vou estar ali, em todas as fases, em todos os passos, em cada parte da vida dele. Ele tem o meu amor, minha atenção, meu compromisso e meu tempo. Ele é meu filho, e eu sou pai dele  hoje, amanhã e sempre.
+
+Eu respeito totalmente sua decisão de manter nossas conversas apenas sobre o Lucas. E eu sigo isso com maturidade e paz. Não vou tocar mais no passado, não vou trazer sentimentos, não vou abrir assuntos que você decidiu entregar a Deus. A partir de agora, seguimos apenas pelo que diz respeito ao nosso filho. E faço isso sem mágoa e sem resistência.
+
+Desejo que sua vida siga leve, guiada por Jesus, iluminada por tudo que você acredita e escolhe viver. Que Deus continue te conduzindo com paz, firmeza e propósito. Desejo isso com verdade, sem ironia, sem segundas intenções.
+
+Eu sigo meu caminho também. Carrego o que sinto com respeito, guardo no silêncio aquilo que pertence só a mim, e deixo que Deus faça o que tiver que ser feito no tempo certo  seja qual for o rumo. O que tinha que ser dito foi dito. O que precisava ser esclarecido foi esclarecido.
+
+Agora deixo esse capítulo descansar.
+        </p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('stars-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        const starCount = 200;
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push(new Star());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
