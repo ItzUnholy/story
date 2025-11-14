@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adeus.</title>
+    <title>Fim</title>
     <style>
         * {
             margin: 0;
@@ -15,9 +15,10 @@
             background-color: #000;
             color: #fff;
             font-family: 'Georgia', serif;
-            overflow: hidden;
-            width: 100vw;
-            height: 100vh;
+            /* Permitir scroll para conteúdo longo */
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
         }
 
         #stars-canvas {
@@ -32,36 +33,51 @@
         .container {
             position: relative;
             z-index: 1;
+            /* Layout otimizado para leitura com padding responsivo */
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-            text-align: center;
         }
 
         h1 {
-            font-size: 2rem;
+            /* Fonte responsiva com clamp */
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 400;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-align: center;
         }
 
         p {
-            font-size: 1rem;
-            line-height: 1.6;
-            max-width: 600px;
-            opacity: 0.9;
+            /* Fonte menor e otimizada para leitura em todos os dispositivos */
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5rem;
+        /* Media query para melhor espaçamento em tablets e desktop */
+        @media (min-width: 768px) {
+            .container {
+                padding: 80px 40px;
             }
-            
+
             p {
-                font-size: 0.9rem;
+                line-height: 2;
+            }
+        }
+
+        /* Media query para telas muito pequenas */
+        @media (max-width: 375px) {
+            .container {
+                padding: 40px 15px;
             }
         }
     </style>
@@ -73,23 +89,30 @@
         <h1>Fim.</h1>
         <p>
             Quero encerrar essa conversa de um jeito sincero e sereno, porque, apesar de tudo o que já passamos e de todos os mal-entendidos, eu não quero deixar nada sem clareza. Não estou aqui para reviver o passado nem para tentar reabrir algo que você já entregou a Deus. Eu realmente entendo que você colocou sua vida nas mãos de Jesus, que sua caminhada hoje é guiada pela fé, e eu respeito profundamente isso. Entendo de verdade. Entendo seu novo caminho, suas escolhas, sua transformação. A sua vida está nas mãos de Deus, e eu não tenho nada além de respeito por isso.
-
-E justamente por compreender isso, quero deixar claro que minhas intenções jamais foram contrariar o rumo que você escolheu. Eu nunca te procurei para tocar em feridas antigas, nem para trazer de volta algo que você encerrou diante de Deus. Tudo que eu tentei conversar tinha um único motivo: o Lucas. Ele é meu filho, é parte de mim, e tudo que eu fiz foi buscando o que fosse melhor para ele. Nunca, em momento algum, ele foi desculpa, ponte ou isca. Ele é meu amor, minha responsabilidade e meu compromisso. Nada além disso.
-
-Mas existe uma verdade que eu não quero guardar como se fosse algo errado. Apesar de tudo, eu ainda sinto amor por você. Não é um amor que exige, que cobra ou que tenta mudar o caminho que você escolheu diante de Deus. É um amor silencioso, verdadeiro, que eu aprendi a carregar com maturidade. Um amor que entende que nem sempre o que queremos é o que Deus quer pra nós naquele momento. E mesmo assim, ele existe.
-
-Sendo transparente: se um dia  por vontade sua, por decisão sua, por caminho que Deus coloque no seu coração você decidir voltar, eu aceitaria você. Não por desespero, não por dependência, mas porque meu sentimento é real. Mas isso não é um pedido, não é uma esperança forçada, não é uma pressão. É apenas sinceridade. A vida está nas mãos de Deus, não nas minhas. Ele guia os caminhos. Ele sabe o que faz. E eu respeito isso profundamente.
         </p>
-Sobre o Lucas, por favor, guarde isso com certeza: ele nunca esteve e nunca estará abandonado por mim. Ele vive no meu coração de um jeito que nada e ninguém pode apagar. Eu sempre vou ser presente na vida dele. Sempre vou ser pai. Sempre vou estar ali, em todas as fases, em todos os passos, em cada parte da vida dele. Ele tem o meu amor, minha atenção, meu compromisso e meu tempo. Ele é meu filho, e eu sou pai dele  hoje, amanhã e sempre.
-
-Eu respeito totalmente sua decisão de manter nossas conversas apenas sobre o Lucas. E eu sigo isso com maturidade e paz. Não vou tocar mais no passado, não vou trazer sentimentos, não vou abrir assuntos que você decidiu entregar a Deus. A partir de agora, seguimos apenas pelo que diz respeito ao nosso filho. E faço isso sem mágoa e sem resistência.
-
-Desejo que sua vida siga leve, guiada por Jesus, iluminada por tudo que você acredita e escolhe viver. Que Deus continue te conduzindo com paz, firmeza e propósito. Desejo isso com verdade, sem ironia, sem segundas intenções.
-
+        <p>
+            E justamente por compreender isso, quero deixar claro que minhas intenções jamais foram contrariar o rumo que você escolheu. Eu nunca te procurei para tocar em feridas antigas, nem para trazer de volta algo que você encerrou diante de Deus. Tudo que eu tentei conversar tinha um único motivo: o Lucas. Ele é meu filho, é parte de mim, e tudo que eu fiz foi buscando o que fosse melhor para ele. Nunca, em momento algum, ele foi desculpa, ponte ou isca. Ele é meu amor, minha responsabilidade e meu compromisso. Nada além disso.
         </p>
-Eu sigo meu caminho também. Carrego o que sinto com respeito, guardo no silêncio aquilo que pertence só a mim, e deixo que Deus faça o que tiver que ser feito no tempo certo  seja qual for o rumo. O que tinha que ser dito foi dito. O que precisava ser esclarecido foi esclarecido.
-
-Agora deixo esse capítulo descansar.
+        <p>
+            Mas existe uma verdade que eu não quero guardar como se fosse algo errado. Apesar de tudo, eu ainda sinto amor por você. Não é um amor que exige, que cobra ou que tenta mudar o caminho que você escolheu diante de Deus. É um amor silencioso, verdadeiro, que eu aprendi a carregar com maturidade. Um amor que entende que nem sempre o que queremos é o que Deus quer pra nós naquele momento. E mesmo assim, ele existe.
+        </p>
+        <p>
+            Sendo transparente: se um dia — por vontade sua, por decisão sua, por caminho que Deus coloque no seu coração — você decidir voltar, eu aceitaria você. Não por desespero, não por dependência, mas porque meu sentimento é real. Mas isso não é um pedido, não é uma esperança forçada, não é uma pressão. É apenas sinceridade. A vida está nas mãos de Deus, não nas minhas. Ele guia os caminhos. Ele sabe o que faz. E eu respeito isso profundamente.
+        </p>
+        <p>
+            Sobre o Lucas, por favor, guarde isso com certeza: ele nunca esteve e nunca estará abandonado por mim. Ele vive no meu coração de um jeito que nada e ninguém pode apagar. Eu sempre vou ser presente na vida dele. Sempre vou ser pai. Sempre vou estar ali, em todas as fases, em todos os passos, em cada parte da vida dele. Ele tem o meu amor, minha atenção, meu compromisso e meu tempo. Ele é meu filho, e eu sou pai dele — hoje, amanhã e sempre.
+        </p>
+        <p>
+            Eu respeito totalmente sua decisão de manter nossas conversas apenas sobre o Lucas. E eu sigo isso com maturidade e paz. Não vou tocar mais no passado, não vou trazer sentimentos, não vou abrir assuntos que você decidiu entregar a Deus. A partir de agora, seguimos apenas pelo que diz respeito ao nosso filho. E faço isso sem mágoa e sem resistência.
+        </p>
+        <p>
+            Desejo que sua vida siga leve, guiada por Jesus, iluminada por tudo que você acredita e escolhe viver. Que Deus continue te conduzindo com paz, firmeza e propósito. Desejo isso com verdade, sem ironia, sem segundas intenções.
+        </p>
+        <p>
+            Eu sigo meu caminho também. Carrego o que sinto com respeito, guardo no silêncio aquilo que pertence só a mim, e deixo que Deus faça o que tiver que ser feito no tempo certo — seja qual for o rumo. O que tinha que ser dito foi dito. O que precisava ser esclarecido foi esclarecido.
+        </p>
+        <p>
+            Agora deixo esse capítulo descansar.
         </p>
     </div>
 
